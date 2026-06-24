@@ -6,13 +6,14 @@ import Footer from '@/components/Footer'
 import { products, getProductByKey } from '@/data/products'
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     key: string
-  }
+  }>
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = getProductByKey(params.key)
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { key } = await params
+  const product = getProductByKey(key)
 
   if (!product) {
     notFound()
