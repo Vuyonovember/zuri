@@ -63,7 +63,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="grid gap-8 md:grid-cols-2 items-center"
+          className="grid gap-8 md:grid-cols-2 items-stretch"
         >
           <div className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4">
             <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
@@ -78,7 +78,7 @@ export default function AboutPage() {
               Vuyo and Mariska founded Zuri with a clear, uncompromising mandate: to build a premium, highly professional beverage and lifestyle ecosystem that respects traditional African roots while completely modernizing how the world experiences coffee. They are not just selling products; they are welcoming you into a lifestyle they live every single day.
             </p>
           </div>
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-square">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 h-full min-h-[400px]">
             <Image
               src="/webimages/B69DC046-40D7-4402-B3AE-50A0977AED35.png"
               alt="Founders story"
@@ -143,7 +143,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: 'easeOut' }}
-          className="grid gap-8 md:grid-cols-2 items-center"
+          className="grid gap-8 md:grid-cols-2 items-stretch"
         >
           <div className="space-y-6">
             <div className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-gray-300">
@@ -165,7 +165,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-square">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 h-full min-h-[400px]">
             <Image
               src="/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png"
               alt="Mission and vision"
