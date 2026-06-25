@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -26,6 +27,22 @@ export default function PartnersPage() {
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
             We're not just selling coffee - we're building a premium ecosystem. Partner with us to bring authentic African coffee culture to your space.
           </p>
+        </motion.div>
+
+        {/* Hero Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.05 }}
+          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
+        >
+          <Image
+            src="/partnerpage/59B111FE-83B8-4B57-86D1-6F2688980B50.png"
+            alt="Partnership"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
 
         {/* Shop-in-Shop */}
@@ -115,11 +132,27 @@ export default function PartnersPage() {
           </div>
         </motion.div>
 
-        {/* CTA */}
+        {/* Secondary Image */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.25 }}
+          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
+        >
+          <Image
+            src="/partnerpage/03704717-B289-4FF3-8AE2-B3293E149ECE.png"
+            alt="Partnership"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
           className="glass border-premium rounded-2xl p-6 sm:p-8 text-center space-y-6"
         >
           <h2 className="text-2xl sm:text-3xl font-semibold">Ready to Partner?</h2>
