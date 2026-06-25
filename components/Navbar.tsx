@@ -19,6 +19,7 @@ export default function Navbar() {
 
   const navItems = [
     { label: 'OUR DIRTY SECRETS', href: '/about' },
+    { label: 'PARTNER WITH US', href: '/partners' },
     { label: 'ARTIFACTS', href: '/products' },
     { label: 'CONFESS TO US', href: '/confess' },
   ]

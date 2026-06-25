@@ -7,6 +7,7 @@ export default function Footer() {
 
   const footerLinks = [
     { label: 'OUR DIRTY SECRETS', href: '/about' },
+    { label: 'PARTNER WITH US', href: '/partners' },
     { label: 'CONFESS TO US', href: '/confess' },
     { label: 'THE FINE PRINT', href: '/legal' },
   ]
@@ -69,13 +70,18 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-bold mb-4">CONNECT</h4>
-            <div className="flex gap-4">
+            <h4 className="font-bold mb-4">CONTACT</h4>
+            <div className="space-y-2 text-sm">
+              <a href="mailto:hello@bezuri.co.za" className="text-gray-400 hover:text-zuri-orange transition-colors block">
+                hello@bezuri.co.za
+              </a>
+              <a href="tel:+27825538183" className="text-gray-400 hover:text-zuri-orange transition-colors block">
+                +27(82)-553-8183
+              </a>
+            </div>
+            <div className="flex gap-4 mt-4">
               <a href="https://instagram.com/@bezuri.co.za" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-zuri-orange transition-colors">
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-zuri-orange transition-colors">
-                <Mail size={20} />
               </a>
             </div>
           </motion.div>

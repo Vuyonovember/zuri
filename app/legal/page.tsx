@@ -120,11 +120,19 @@ export default function LegalPage() {
           <div className="space-y-4">
             <h2 className="text-xl sm:text-2xl font-semibold">Contact Us</h2>
             <p className="text-sm sm:text-base text-gray-300">
-              If you have any questions about these terms or our services, please contact us through our social media channels or email.
+              If you have any questions about these terms or our services, please contact us:
             </p>
-            <p className="text-sm sm:text-base text-gray-300">
-              Instagram: @bezuri.co.za
-            </p>
+            <div className="space-y-2">
+              <p className="text-sm sm:text-base text-gray-300">
+                Email: <a href="mailto:hello@bezuri.co.za" className="text-zuri-orange hover:underline">hello@bezuri.co.za</a>
+              </p>
+              <p className="text-sm sm:text-base text-gray-300">
+                Phone: <a href="tel:+27825538183" className="text-zuri-orange hover:underline">+27(82)-553-8183</a>
+              </p>
+              <p className="text-sm sm:text-base text-gray-300">
+                Instagram: <a href="https://instagram.com/@bezuri.co.za" target="_blank" rel="noopener noreferrer" className="text-zuri-orange hover:underline">@bezuri.co.za</a>
+              </p>
+            </div>
           </div>
 
           <div className="pt-4 text-xs text-gray-500">
