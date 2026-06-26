@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     // Send notification to Zuri team
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
       to: ['hello@bezuri.co.za'],
       subject: `New Hunt Sign-up: ${email}`,
