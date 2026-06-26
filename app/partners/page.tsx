@@ -186,9 +186,8 @@ export default function PartnersPage() {
               </p>
               <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
                 <div className="space-y-2">
-                  <label className="text-sm text-gray-300 flex justify-between">
-                    <span>Number of Employees</span>
-                    <span className="text-zuri-orange font-semibold">{employees}</span>
+                  <label className="text-sm text-gray-300">
+                    Number of Employees
                   </label>
                   <div className="flex gap-4 items-center">
                     <input
@@ -215,9 +214,8 @@ export default function PartnersPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm text-gray-300 flex justify-between">
-                    <span>Cups per Day (per employee)</span>
-                    <span className="text-zuri-orange font-semibold">{cupsPerDay}</span>
+                  <label className="text-sm text-gray-300">
+                    Cups per Day (per employee)
                   </label>
                   <div className="flex gap-4 items-center">
                     <input
