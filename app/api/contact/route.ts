@@ -15,7 +15,7 @@ export async function POST(request: Request) {
       )
     }
 
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
       to: ['hello@bezuri.co.za'],
       subject: `New Contact Form Submission from ${name || email}`,
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       `,
     })
 
-    return NextResponse.json(data)
+    return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error sending email:', error)
     return NextResponse.json(

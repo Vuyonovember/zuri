@@ -190,14 +190,24 @@ export default function PartnersPage() {
                     <span>Number of Employees</span>
                     <span className="text-zuri-orange font-semibold">{employees}</span>
                   </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="500"
-                    value={employees}
-                    onChange={(e) => setEmployees(parseInt(e.target.value))}
-                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
-                  />
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="range"
+                      min="1"
+                      max="500"
+                      value={employees}
+                      onChange={(e) => setEmployees(parseInt(e.target.value))}
+                      className="flex-1 h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="500"
+                      value={employees}
+                      onChange={(e) => setEmployees(parseInt(e.target.value) || 1)}
+                      className="w-20 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-center focus:outline-none focus:border-zuri-orange transition-colors"
+                    />
+                  </div>
                   <div className="flex justify-between text-xs text-gray-500">
                     <span>1</span>
                     <span>500</span>
@@ -209,14 +219,24 @@ export default function PartnersPage() {
                     <span>Cups per Day (per employee)</span>
                     <span className="text-zuri-orange font-semibold">{cupsPerDay}</span>
                   </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="10"
-                    value={cupsPerDay}
-                    onChange={(e) => setCupsPerDay(parseInt(e.target.value))}
-                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
-                  />
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="range"
+                      min="1"
+                      max="10"
+                      value={cupsPerDay}
+                      onChange={(e) => setCupsPerDay(parseInt(e.target.value))}
+                      className="flex-1 h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="10"
+                      value={cupsPerDay}
+                      onChange={(e) => setCupsPerDay(parseInt(e.target.value) || 1)}
+                      className="w-20 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-center focus:outline-none focus:border-zuri-orange transition-colors"
+                    />
+                  </div>
                   <div className="flex justify-between text-xs text-gray-500">
                     <span>1</span>
                     <span>10</span>
