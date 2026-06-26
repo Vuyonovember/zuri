@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -36,9 +37,14 @@ export default function Navbar() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-2xl font-bold gradient-text"
+              className="relative w-32 h-10"
             >
-              ZURI
+              <Image
+                src="/headerfooter/5F514A9D-CF16-4E9F-ABDB-F892868B81BD.PNG"
+                alt="Zuri"
+                fill
+                className="object-contain"
+              />
             </motion.div>
           </Link>
 

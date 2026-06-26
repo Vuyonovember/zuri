@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Instagram } from 'lucide-react'
 
 export default function Footer() {
@@ -23,8 +24,16 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center md:text-left"
           >
-            <h3 className="text-2xl font-bold gradient-text mb-4">ZURI</h3>
+            <div className="relative w-40 h-16 mx-auto md:mx-0 mb-4">
+              <Image
+                src="/headerfooter/46D06CBE-B693-4860-9193-44935904D917.PNG"
+                alt="Zuri"
+                fill
+                className="object-contain"
+              />
+            </div>
             <p className="text-gray-400 text-sm">
               Premium Tanzanian coffee for the bold. Join the movement.
             </p>
@@ -36,6 +45,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            className="text-center md:text-left"
           >
             <h4 className="font-bold mb-4">NAVIGATE</h4>
             <ul className="space-y-2 text-sm">
@@ -50,6 +60,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="text-center md:text-left"
           >
             <h4 className="font-bold mb-4">LEGAL</h4>
             <ul className="space-y-2 text-sm">
@@ -69,6 +80,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
+            className="text-center md:text-left"
           >
             <h4 className="font-bold mb-4">CONTACT</h4>
             <div className="space-y-2 text-sm">
@@ -79,7 +91,7 @@ export default function Footer() {
                 +27(82)-553-8183
               </a>
             </div>
-            <div className="flex gap-4 mt-4">
+            <div className="flex gap-4 mt-4 justify-center md:justify-start">
               <a href="https://instagram.com/@bezuri.co.za" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-zuri-orange transition-colors">
                 <Instagram size={20} />
               </a>
