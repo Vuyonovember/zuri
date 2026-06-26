@@ -31,13 +31,13 @@ export default function Navbar() {
         isScrolled ? 'glass' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" aria-label="Go to Zuri home" className="inline-flex items-center">
+          <Link href="/" aria-label="Go to Zuri home" className="inline-flex items-center -ml-2">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="relative w-32 h-10"
+              className="relative w-48 h-14"
             >
               <Image
                 src="/headerfooter/5F514A9D-CF16-4E9F-ABDB-F892868B81BD.PNG"
