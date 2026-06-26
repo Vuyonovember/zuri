@@ -111,7 +111,7 @@ export default function BloemHunt() {
               </div>
               <h3 className="text-lg font-bold mb-2">{location.name}</h3>
               {unlockedLocations.includes(location.id) ? (
-                <p className="text-sm text-zuri-orange font-semibold">{location.hint}</p>
+                <p className="text-sm text-zuri-orange font-semibold">Coming Soon</p>
               ) : (
                 <p className="text-sm text-gray-500">Unlock to reveal</p>
               )}

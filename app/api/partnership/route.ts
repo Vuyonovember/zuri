@@ -1,0 +1,38 @@
+import { Resend } from 'resend'
+import { NextResponse } from 'next/server'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const { employees, cupsPerDay, includeMachine } = body
+
+    // Send notification to Zuri team
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      to: ['hello@bezuri.co.za'],
+      subject: 'New Partnership Request',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #DE2C00;">New Partnership Request</h2>
+          <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Number of Employees:</strong> ${employees}</p>
+            <p><strong>Cups per Day (per employee):</strong> ${cupsPerDay}</p>
+            <p><strong>Include Machine Rental:</strong> ${includeMachine ? 'Yes' : 'No'}</p>
+            <p><strong>Estimated Daily Consumption:</strong> ${employees * cupsPerDay} cups</p>
+          </div>
+          <p style="color: #666; font-size: 12px;">This partnership request was submitted on the Zuri website.</p>
+        </div>
+      `,
+    })
+
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Error sending email:', error)
+    return NextResponse.json(
+      { error: 'Failed to send email' },
+      { status: 500 }
+    )
+  }
+}

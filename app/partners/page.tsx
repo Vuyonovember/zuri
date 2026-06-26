@@ -1,11 +1,34 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function PartnersPage() {
+  const [employees, setEmployees] = useState(10)
+  const [cupsPerDay, setCupsPerDay] = useState(2)
+  const [includeMachine, setIncludeMachine] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      await fetch('/api/partnership', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          employees,
+          cupsPerDay,
+          includeMachine,
+        }),
+      })
+      setSubmitted(true)
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
   return (
     <main className="min-h-screen bg-zuri-black">
       <Navbar />
@@ -148,31 +171,122 @@ export default function PartnersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
 
-        {/* CTA */}
+        {/* Partnership Form */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 text-center space-y-6"
+          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-6"
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold">Ready to Partner?</h2>
-          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
-            Let's discuss how Zuri can elevate your business. We'll assess your space, understand your needs, and create a custom partnership that works for you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="mailto:hello@bezuri.co.za"
-              className="inline-flex items-center justify-center px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
-            >
-              hello@bezuri.co.za
-            </a>
-            <a
-              href="tel:+27825538183"
-              className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-            >
-              +27(82)-553-8183
-            </a>
-          </div>
+          {!submitted ? (
+            <>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-center">Ready to Partner?</h2>
+              <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto text-center">
+                Tell us about your office needs and we'll create a custom coffee solution for you.
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300 flex justify-between">
+                    <span>Number of Employees</span>
+                    <span className="text-zuri-orange font-semibold">{employees}</span>
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="500"
+                    value={employees}
+                    onChange={(e) => setEmployees(parseInt(e.target.value))}
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span>1</span>
+                    <span>500</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300 flex justify-between">
+                    <span>Cups per Day (per employee)</span>
+                    <span className="text-zuri-orange font-semibold">{cupsPerDay}</span>
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={cupsPerDay}
+                    onChange={(e) => setCupsPerDay(parseInt(e.target.value))}
+                    className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                  />
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span>1</span>
+                    <span>10</span>
+                  </div>
+                </div>
+
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={includeMachine}
+                    onChange={(e) => setIncludeMachine(e.target.checked)}
+                    className="w-5 h-5 accent-zuri-orange rounded"
+                  />
+                  <span className="text-sm text-gray-300">
+                    Include coffee machine rental
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  className="w-full bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
+                >
+                  SUBMIT PARTNERSHIP REQUEST
+                </button>
+              </form>
+
+              <div className="pt-6 border-t border-white/10 space-y-4">
+                <p className="text-sm text-gray-400 text-center">Or contact us directly:</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a
+                    href="mailto:hello@bezuri.co.za"
+                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
+                  >
+                    hello@bezuri.co.za
+                  </a>
+                  <a
+                    href="tel:+27825538183"
+                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
+                  >
+                    +27(82)-553-8183
+                  </a>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="text-center space-y-4">
+              <div className="text-5xl">✨</div>
+              <h3 className="text-2xl font-bold">Request Received!</h3>
+              <p className="text-gray-400">
+                We'll review your needs and get back to you within 24-48 hours with a custom partnership proposal.
+              </p>
+              <div className="pt-6 border-t border-white/10 space-y-4">
+                <p className="text-sm text-gray-400 text-center">Need to reach us sooner?</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a
+                    href="mailto:hello@bezuri.co.za"
+                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
+                  >
+                    hello@bezuri.co.za
+                  </a>
+                  <a
+                    href="tel:+27825538183"
+                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
+                  >
+                    +27(82)-553-8183
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </motion.div>
       </section>
 
