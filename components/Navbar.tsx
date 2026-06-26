@@ -40,7 +40,7 @@ export default function Navbar() {
               className="relative w-48 h-14"
             >
               <Image
-                src="/headerfooter/5F514A9D-CF16-4E9F-ABDB-F892868B81BD.PNG"
+                src="/headerfooter/79A224CF-D4F5-4A76-A9B0-2AE871A376A4.PNG"
                 alt="Zuri"
                 fill
                 className="object-contain"
