@@ -17,11 +17,20 @@ export default function BloemHunt() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  const handleUnlock = (e: React.FormEvent) => {
+  const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
-      setUnlockedLocations([1, 2, 3, 4, 5])
-      setSubmitted(true)
+      try {
+        await fetch('/api/hunt-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        })
+        setUnlockedLocations([1, 2, 3, 4, 5])
+        setSubmitted(true)
+      } catch (error) {
+        console.error('Error:', error)
+      }
     }
   }
 

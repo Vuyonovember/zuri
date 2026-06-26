@@ -24,8 +24,27 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
     defaultValues: { confession: '' },
   })
 
-  const onSubmit = async (_data: EmailFormData) => {
+  const onSubmit = async (data: EmailFormData) => {
     try {
+      if (variant === 'confess') {
+        await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'Anonymous Confession',
+            email: data.email,
+            message: data.confession,
+          }),
+        })
+      } else {
+        await fetch('/api/hunt-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.email,
+          }),
+        })
+      }
       setSubmitted(true)
       setTimeout(() => {
         onClose()
