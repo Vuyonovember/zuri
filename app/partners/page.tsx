@@ -9,7 +9,9 @@ import Footer from '@/components/Footer'
 export default function PartnersPage() {
   const [employees, setEmployees] = useState(10)
   const [cupsPerDay, setCupsPerDay] = useState(2)
+  const [daysPerWeek, setDaysPerWeek] = useState(5)
   const [includeMachine, setIncludeMachine] = useState(false)
+  const [comments, setComments] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -21,7 +23,9 @@ export default function PartnersPage() {
         body: JSON.stringify({
           employees,
           cupsPerDay,
+          daysPerWeek,
           includeMachine,
+          comments,
         }),
       })
       setSubmitted(true)
@@ -239,6 +243,47 @@ export default function PartnersPage() {
                     <span>1</span>
                     <span>10</span>
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Days per Week at Office
+                  </label>
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="range"
+                      min="1"
+                      max="7"
+                      value={daysPerWeek}
+                      onChange={(e) => setDaysPerWeek(parseInt(e.target.value))}
+                      className="flex-1 h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                    />
+                    <input
+                      type="number"
+                      min="1"
+                      max="7"
+                      value={daysPerWeek}
+                      onChange={(e) => setDaysPerWeek(parseInt(e.target.value) || 1)}
+                      className="w-20 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-center focus:outline-none focus:border-zuri-orange transition-colors"
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span>1</span>
+                    <span>7</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Additional Comments (Optional)
+                  </label>
+                  <textarea
+                    value={comments}
+                    onChange={(e) => setComments(e.target.value)}
+                    placeholder="Any special requests or additional information..."
+                    rows={3}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors resize-none"
+                  />
                 </div>
 
                 <label className="flex items-center gap-3 cursor-pointer">
