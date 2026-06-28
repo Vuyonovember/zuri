@@ -64,7 +64,7 @@ export default function PartnersPage() {
           className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
         >
           <Image
-            src="/partnerpage/59B111FE-83B8-4B57-86D1-6F2688980B50.png"
+            src="/partnerpage/42EF1BCE-938B-4454-94C3-EB46E6E4559A.png"
             alt="Partnership"
             fill
             className="object-cover"
@@ -167,7 +167,7 @@ export default function PartnersPage() {
           className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
         >
           <Image
-            src="/partnerpage/03704717-B289-4FF3-8AE2-B3293E149ECE.png"
+            src="/partnerpage/59B111FE-83B8-4B57-86D1-6F2688980B50.png"
             alt="Partnership"
             fill
             className="object-cover"
