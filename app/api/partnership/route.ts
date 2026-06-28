@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { employees, cupsPerDay, daysPerWeek, includeMachine, comments } = body
+    const { name, email, phone, employees, cupsPerDay, daysPerWeek, includeMachine, comments } = body
 
     // Send notification to Zuri team
     await resend.emails.send({
@@ -17,6 +17,10 @@ export async function POST(request: Request) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #DE2C00;">New Partnership Request</h2>
           <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
             <p><strong>Number of Employees:</strong> ${employees}</p>
             <p><strong>Cups per Day (per employee):</strong> ${cupsPerDay}</p>
             <p><strong>Days per Week at Office:</strong> ${daysPerWeek}</p>

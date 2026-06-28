@@ -7,6 +7,9 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function PartnersPage() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [employees, setEmployees] = useState(10)
   const [cupsPerDay, setCupsPerDay] = useState(2)
   const [daysPerWeek, setDaysPerWeek] = useState(5)
@@ -21,6 +24,9 @@ export default function PartnersPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          name,
+          email,
+          phone,
           employees,
           cupsPerDay,
           daysPerWeek,
@@ -189,6 +195,48 @@ export default function PartnersPage() {
                 Tell us about your office needs and we'll create a custom coffee solution for you.
               </p>
               <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="John Doe"
+                    required
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="john@company.com"
+                    required
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+27 82 553 8183"
+                    required
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
+                  />
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-sm text-gray-300">
                     Number of Employees
