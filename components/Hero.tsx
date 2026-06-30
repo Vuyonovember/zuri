@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface HeroProps {
   onExploreHunt: () => void
@@ -18,22 +19,12 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
     '/webimages/AEC83A2D-55DF-4FC0-BE41-2B791653F9CD.png',
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [heroImages.length])
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % heroImages.length)
+  }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)
   }
 
   const itemVariants = {
@@ -46,79 +37,100 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   }
 
   return (
-    <section 
-      className="relative w-full overflow-hidden pt-24 pb-20 md:min-h-[80vh] bg-cover bg-center transition-all duration-1000 ease-in-out"
-      style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
-    >
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/60" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 md:gap-14">
-          {/* Text column */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="relative z-20 text-center md:text-left space-y-6 md:space-y-8 max-w-3xl mx-auto md:mx-0"
+    <section className="relative w-full pt-24 pb-20 md:pt-32 md:pb-32 bg-zuri-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Text column */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="text-center space-y-6 md:space-y-8 max-w-4xl mx-auto"
+        >
+          {/* Main Headline */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
           >
-            {/* Main Headline */}
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
-            >
-              <span className="block text-white">WAKE UP.</span>
-              <span className="gradient-text block">BE BOLD.</span>
-              <span className="block text-white">STACK YOUR ZURI.</span>
-            </motion.h1>
+            <span className="block text-white">WAKE UP.</span>
+            <span className="gradient-text block">BE BOLD.</span>
+            <span className="block text-white">STACK YOUR ZURI.</span>
+          </motion.h1>
 
-            {/* Subheading */}
-            <motion.p
-              variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto md:mx-0"
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          >
+            <button
+              onClick={onJoinSubscription}
+              className="px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
             >
-              Generic coffee jars on office shelves are where workplace morale goes to die. Zuri injects your space with premium Tanzanian Single-Origin extractions and unannounced cultural activations. No stale utilities. Just high-vibe focus on auto-pilot.
-            </motion.p>
-
-            {/* Value chips */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap justify-center md:justify-start gap-2 pt-1"
+              SUBSCRIBE TO THE TRIBE
+            </button>
+            <button
+              onClick={onExploreHunt}
+              className="px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
             >
-              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] tracking-[0.18em] uppercase bg-white/5 border border-zuri-orange/70 text-gray-100">
-                Meticulously Cultivated
-              </span>
-              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] tracking-[0.18em] uppercase bg-white/5 border border-teal-400/70 text-gray-100">
-                Structurally Designed
-              </span>
-              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] tracking-[0.18em] uppercase bg-white/5 border border-amber-400/70 text-gray-100">
-                Fueled With Soul
-              </span>
-              <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] tracking-[0.18em] uppercase bg-white/5 border border-fuchsia-500/70 text-gray-100">
-                Not A Brand. A Movement.
-              </span>
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4"
-            >
-              <button
-                onClick={onJoinSubscription}
-                className="px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
-              >
-                JOIN THE SUBSCRIPTION MOVEMENT
-              </button>
-              <button
-                onClick={onExploreHunt}
-                className="px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-              >
-                EXPLORE THE HUNT
-              </button>
-            </motion.div>
+              EXPLORE THE HUNT
+            </button>
           </motion.div>
-        </div>
+        </motion.div>
+
+        {/* Wide Interactive Image Slider Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-12 md:mt-16 max-w-[90vw] md:max-w-[1200px] mx-auto"
+        >
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
+               style={{
+                 boxShadow: '0 10px 30px -10px rgba(255, 85, 0, 0.15), 0 1px 3px rgba(255, 85, 0, 0.1)',
+               }}
+          >
+            {/* Image Container */}
+            <div className="relative aspect-[16/9] md:aspect-[21/9]">
+              <Image
+                src={heroImages[currentImage]}
+                alt="Zuri Hero"
+                fill
+                className="object-cover transition-all duration-700 ease-in-out"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Dot Indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImage(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentImage ? 'bg-zuri-orange w-6' : 'bg-white/50 hover:bg-white/70'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
