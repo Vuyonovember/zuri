@@ -19,6 +19,29 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
     '/webimages/AEC83A2D-55DF-4FC0-BE41-2B791653F9CD.png',
   ]
 
+  const imageMetadata = [
+    {
+      title: 'Tanzanian Highlands',
+      subtitle: 'Single-Origin Arabica',
+      description: 'Cultivated at 1,400-1,800m elevation',
+    },
+    {
+      title: 'The Zuri Movement',
+      subtitle: 'Coffee With Soul',
+      description: 'Premium Tanzanian extractions',
+    },
+    {
+      title: 'Cultural Activations',
+      subtitle: 'Unannounced Drops',
+      description: 'High-vibe focus on auto-pilot',
+    },
+    {
+      title: 'The Collective',
+      subtitle: 'Community First',
+      description: 'Not a brand. A movement.',
+    },
+  ]
+
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % heroImages.length)
   }
@@ -128,6 +151,27 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
                   }`}
                 />
               ))}
+            </div>
+
+            {/* Information Pane */}
+            <div className="bg-black/80 backdrop-blur-sm p-6 md:p-8 border-t border-white/10">
+              <motion.div
+                key={currentImage}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-2"
+              >
+                <h3 className="text-xl md:text-2xl font-bold text-white">
+                  {imageMetadata[currentImage].title}
+                </h3>
+                <p className="text-sm md:text-base text-zuri-orange uppercase tracking-wider">
+                  {imageMetadata[currentImage].subtitle}
+                </p>
+                <p className="text-sm md:text-base text-gray-300">
+                  {imageMetadata[currentImage].description}
+                </p>
+              </motion.div>
             </div>
           </div>
         </motion.div>

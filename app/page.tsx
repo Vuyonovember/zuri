@@ -14,6 +14,7 @@ import PricingTiers from '@/components/PricingTiers'
 
 export default function Home() {
   const [showSoulContract, setShowSoulContract] = useState(false)
+  const [showNewsletter, setShowNewsletter] = useState(false)
 
   const handleExploreHunt = () => {
     const target = document.getElementById('hunt')
@@ -22,11 +23,8 @@ export default function Home() {
     }
   }
 
-  const handleJoinSubscription = () => {
-    const target = document.getElementById('pricing')
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+  const handleSubscribeToTribe = () => {
+    setShowNewsletter(true)
   }
 
   return (
@@ -34,7 +32,7 @@ export default function Home() {
       <Navbar />
       <Hero
         onExploreHunt={handleExploreHunt}
-        onJoinSubscription={handleJoinSubscription}
+        onJoinSubscription={handleSubscribeToTribe}
       />
       <PricingTiers />
       <Origin />
@@ -45,6 +43,9 @@ export default function Home() {
       <Footer />
       {showSoulContract && (
         <SoulContract onClose={() => setShowSoulContract(false)} />
+      )}
+      {showNewsletter && (
+        <SoulContract onClose={() => setShowNewsletter(false)} variant="newsletter" />
       )}
     </main>
   )

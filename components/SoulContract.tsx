@@ -15,7 +15,7 @@ type EmailFormData = z.infer<typeof emailSchema>
 
 interface SoulContractProps {
   onClose: () => void
-  variant?: 'waitlist' | 'confess'
+  variant?: 'waitlist' | 'confess' | 'newsletter'
 }
 
 export default function SoulContract({ onClose, variant = 'waitlist' }: SoulContractProps) {
@@ -34,6 +34,14 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
             name: 'Anonymous Confession',
             email: data.email,
             message: data.confession,
+          }),
+        })
+      } else if (variant === 'newsletter') {
+        await fetch('/api/hunt-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.email,
           }),
         })
       } else {
@@ -87,12 +95,14 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold">
                   <span className="gradient-text">
-                    {variant === 'confess' ? 'CONFESS TO ZURI' : 'SELL YOUR SOUL'}
+                    {variant === 'confess' ? 'CONFESS TO ZURI' : variant === 'newsletter' ? 'JOIN THE TRIBE' : 'SELL YOUR SOUL'}
                   </span>
                 </h2>
                 <p className="text-gray-400 text-sm">
                   {variant === 'confess'
                     ? 'Drop your confession and email. This is a direct line to the team.'
+                    : variant === 'newsletter'
+                    ? 'Subscribe to get exclusive drops, cultural activations, and premium coffee updates.'
                     : 'to the movement. join the waitlist for exclusive access.'}
                 </p>
               </div>
@@ -135,6 +145,8 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
                   <span className="text-xs text-gray-400">
                     {variant === 'confess'
                       ? 'I understand this is a direct line to the team, not a mailing list.'
+                      : variant === 'newsletter'
+                      ? 'I agree to receive exclusive drops and updates from Zuri.'
                       : "I understand that by joining, I'm committing to excellence and refusing mediocrity."}
                   </span>
                 </label>
@@ -143,13 +155,15 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
                   type="submit"
                   className="w-full bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
                 >
-                  EXECUTE CONTRACT
+                  {variant === 'newsletter' ? 'SUBSCRIBE' : 'EXECUTE CONTRACT'}
                 </button>
               </form>
 
               <p className="text-xs text-gray-500 text-center">
                 {variant === 'confess'
                   ? "This does not sign you up for anything. If we reply, it's because your confession actually hits."
+                  : variant === 'newsletter'
+                  ? "Join the tribe. Unsubscribe anytime."
                   : "YOUR SOUL IS SAFE. We'll never spam you."}
               </p>
             </motion.div>
@@ -161,11 +175,13 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
             >
               <div className="text-5xl">✨</div>
               <h3 className="text-2xl font-bold">
-                {variant === 'confess' ? 'CONFESSION RECEIVED' : 'WELCOME TO THE CULT'}
+                {variant === 'confess' ? 'CONFESSION RECEIVED' : variant === 'newsletter' ? 'WELCOME TO THE TRIBE' : 'WELCOME TO THE CULT'}
               </h3>
               <p className="text-gray-400">
                 {variant === 'confess'
                   ? "We read every confession. If yours sharpens the movement, we'll respond."
+                  : variant === 'newsletter'
+                  ? "You're now part of the Zuri tribe. Check your email for exclusive drops."
                   : "You're now part of something extraordinary. Check your email for exclusive details."}
               </p>
             </motion.div>
