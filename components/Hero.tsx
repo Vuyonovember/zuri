@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 
 interface HeroProps {
@@ -62,48 +62,12 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   return (
     <section className="relative w-full pt-24 pb-20 md:pt-32 md:pb-32 bg-zuri-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Text column */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          className="text-center space-y-6 md:space-y-8 max-w-4xl mx-auto"
-        >
-          {/* Main Headline */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
-          >
-            <span className="block text-white">WAKE UP.</span>
-            <span className="gradient-text block">BE BOLD.</span>
-            <span className="block text-white">STACK YOUR ZURI.</span>
-          </motion.h1>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
-          >
-            <button
-              onClick={onJoinSubscription}
-              className="px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
-            >
-              SUBSCRIBE TO THE TRIBE
-            </button>
-            <button
-              onClick={onExploreHunt}
-              className="px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-            >
-              EXPLORE THE HUNT
-            </button>
-          </motion.div>
-        </motion.div>
-
         {/* Wide Interactive Image Slider Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-12 md:mt-16 max-w-[90vw] md:max-w-[1200px] mx-auto"
+          transition={{ duration: 0.8 }}
+          className="max-w-[90vw] md:max-w-[1200px] mx-auto"
         >
           <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
                style={{
@@ -174,6 +138,43 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
               </motion.div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Text column - below card */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.3 }}
+          className="text-center space-y-6 md:space-y-8 max-w-4xl mx-auto mt-12 md:mt-16"
+        >
+          {/* Main Headline */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight"
+          >
+            <span className="block text-white">WAKE UP.</span>
+            <span className="gradient-text block">BE BOLD.</span>
+            <span className="block text-white">STACK YOUR ZURI.</span>
+          </motion.h1>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          >
+            <button
+              onClick={onJoinSubscription}
+              className="px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
+            >
+              SUBSCRIBE TO THE TRIBE
+            </button>
+            <button
+              onClick={onExploreHunt}
+              className="px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
+            >
+              EXPLORE THE HUNT
+            </button>
+          </motion.div>
         </motion.div>
       </div>
     </section>
