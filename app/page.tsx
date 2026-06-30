@@ -11,6 +11,7 @@ import Origin from '@/components/Origin'
 import Community from '@/components/Community'
 import WholeBean from '@/components/WholeBean'
 import PricingTiers from '@/components/PricingTiers'
+import ScrollingBanner from '@/components/ScrollingBanner'
 
 export default function Home() {
   const [showSoulContract, setShowSoulContract] = useState(false)
@@ -34,6 +35,7 @@ export default function Home() {
         onExploreHunt={handleExploreHunt}
         onJoinSubscription={handleSubscribeToTribe}
       />
+      <ScrollingBanner />
       <PricingTiers />
       <Origin />
       <WholeBean />
