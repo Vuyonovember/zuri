@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 interface HeroProps {
-  onExecuteContract: () => void
   onExploreHunt: () => void
+  onJoinSubscription: () => void
 }
 
-export default function Hero({ onExecuteContract, onExploreHunt }: HeroProps) {
+export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   const [currentImage, setCurrentImage] = useState(0)
   
   const heroImages = [
@@ -69,6 +69,7 @@ export default function Hero({ onExecuteContract, onExploreHunt }: HeroProps) {
             >
               <span className="block text-white">WAKE UP.</span>
               <span className="gradient-text block">BE BOLD.</span>
+              <span className="block text-white">STACK YOUR ZURI.</span>
             </motion.h1>
 
             {/* Subheading */}
@@ -76,8 +77,7 @@ export default function Hero({ onExecuteContract, onExploreHunt }: HeroProps) {
               variants={itemVariants}
               className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto md:mx-0"
             >
-              Premium Tanzanian single-origin coffee for those who refuse to settle.
-              Zuri is a beautiful, unapologetic explosion of culture, deep African soul, and premium community.
+              Generic coffee jars on office shelves are where workplace morale goes to die. Zuri injects your space with premium Tanzanian Single-Origin extractions and unannounced cultural activations. No stale utilities. Just high-vibe focus on auto-pilot.
             </motion.p>
 
             {/* Value chips */}
@@ -105,10 +105,10 @@ export default function Hero({ onExecuteContract, onExploreHunt }: HeroProps) {
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4"
             >
               <button
-                onClick={onExecuteContract}
+                onClick={onJoinSubscription}
                 className="px-8 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
               >
-                EXECUTE CONTRACT
+                JOIN THE SUBSCRIPTION MOVEMENT
               </button>
               <button
                 onClick={onExploreHunt}

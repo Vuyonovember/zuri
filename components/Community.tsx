@@ -34,12 +34,28 @@ export default function Community() {
         >
           <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
           <h3 className="text-xl sm:text-2xl font-semibold">The Zuri Coffee Party</h3>
-          <p className="text-sm sm:text-base text-gray-300">
-            A Zuri Coffee Party is a high-energy, sensory collision of local culture, underground music, deep conversations, and premium caffeine. It's an immersive space where our single-origin Tanzanian brew flows freely under striking orange, purple, and teal neon lights. We bring together a handpicked, vibrant crowd of local creatives, tech developers, underground fashion designers, and corporate rebels who are all actively pushing boundaries.
-          </p>
-          <p className="text-sm sm:text-base text-gray-300">
-            We take over unique urban venues, dim the house lights, turn up the bass, and set up massive, dark wooden tasting tables stacked with fresh beans, steaming matte-black mugs, and pour-over carafes. It's not about sitting silently in a corner with headphones on; it's about breaking down walls, sharing raw ideas, laughing, and building collaborative movements that reshape our cities. This is where the Zuri lifestyle comes alive in physical form. You don't just drink the coffee - you experience the collective energy of the room.
-          </p>
+          <ul className="text-sm sm:text-base text-gray-300 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>High-energy sensory collision of local culture, underground music, and premium caffeine</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Immersive space with orange, purple, and teal neon lights</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Handpicked crowd of creatives, tech developers, fashion designers, and corporate rebels</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Massive tasting tables with fresh beans, steaming mugs, and pour-over carafes</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Breaking down walls, sharing raw ideas, and building collaborative movements</span>
+            </li>
+          </ul>
         </motion.div>
 
         {/* Collaborative Ecosystems */}
@@ -52,12 +68,28 @@ export default function Community() {
         >
           <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
           <h3 className="text-xl sm:text-2xl font-semibold">Fueling the Local Vanguard</h3>
-          <p className="text-sm sm:text-base text-gray-300">
-            Zuri does not operate in an isolated corporate bubble. We are built to act as the ultimate social glue and collaborative engine for local creators and high-end independent brands. We actively partner with the local vanguard - progressive spaces and independent operators who share our uncompromising obsession with authentic craftsmanship, bold design, and premium community experiences.
-          </p>
-          <p className="text-sm sm:text-base text-gray-300">
-            Whether we are setting up dynamic pop-up espresso bars inside elite local streetwear boutiques, fueling late-night hackathons and design sprints in modern co-working hubs, or collaborating with local artists on exclusive, limited-edition packaging drops, we believe in the power of the collective. By integrating our 'Coffee With Soul' directly into the spaces where local culture is actively being created, we ensure our ecosystem remains deeply rooted in real communities. We don't just buy and sell; we build, support, and grow together.
-          </p>
+          <ul className="text-sm sm:text-base text-gray-300 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Social glue and collaborative engine for local creators and independent brands</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Partnerships with progressive spaces sharing our obsession with authentic craftsmanship</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Pop-up espresso bars in elite streetwear boutiques</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Fueling late-night hackathons and design sprints in co-working hubs</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Collaborative limited-edition packaging drops with local artists</span>
+            </li>
+          </ul>
         </motion.div>
 
         {/* High-End Merchandise */}
@@ -70,12 +102,28 @@ export default function Community() {
         >
           <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
           <h3 className="text-xl sm:text-2xl font-semibold">Wear the Movement</h3>
-          <p className="text-sm sm:text-base text-gray-300">
-            Zuri is a comprehensive lifestyle movement, which means our distinctive cultural aesthetic extends far beyond the beverage itself. We don't make generic promotional items; we design premium, high-end merchandise collections that serve as the official uniform for our creative community. Every piece we release is meticulously calibrated to reflect the exact same energy, bold typography, and intricate traditional geometric patterns that define our coffee packaging.
-          </p>
-          <p className="text-sm sm:text-base text-gray-300">
-            From heavy-weight, matte-black apparel structured for the modern creator to custom, high-contrast ceramics designed to elevate your daily brewing ritual, our merchandise is built for those who refuse to fit into ordinary, clinical boxes. It is a physical extension of the 'Wake Up. Be Bold. Be Zuri.' manifesto - crafted with soul, built to last, and designed to make a clear statement wherever you step.
-          </p>
+          <ul className="text-sm sm:text-base text-gray-300 space-y-2">
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Premium high-end merchandise as official uniform for creative community</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Bold typography and intricate traditional geometric patterns</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Heavy-weight matte-black apparel for modern creators</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Custom high-contrast ceramics for daily brewing rituals</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-zuri-orange mt-1">•</span>
+              <span>Physical extension of 'Wake Up. Be Bold. Be Zuri.' manifesto</span>
+            </li>
+          </ul>
         </motion.div>
 
         {/* Community Manifesto Ticker */}

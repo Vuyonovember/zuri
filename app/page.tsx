@@ -10,16 +10,20 @@ import Footer from '@/components/Footer'
 import Origin from '@/components/Origin'
 import Community from '@/components/Community'
 import WholeBean from '@/components/WholeBean'
+import PricingTiers from '@/components/PricingTiers'
 
 export default function Home() {
   const [showSoulContract, setShowSoulContract] = useState(false)
 
-  const handleOpenSoulContract = () => {
-    setShowSoulContract(true)
-  }
-
   const handleExploreHunt = () => {
     const target = document.getElementById('hunt')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  const handleJoinSubscription = () => {
+    const target = document.getElementById('pricing')
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -29,9 +33,10 @@ export default function Home() {
     <main className="min-h-screen bg-zuri-black">
       <Navbar />
       <Hero
-        onExecuteContract={handleOpenSoulContract}
         onExploreHunt={handleExploreHunt}
+        onJoinSubscription={handleJoinSubscription}
       />
+      <PricingTiers />
       <Origin />
       <WholeBean />
       <Gallery />

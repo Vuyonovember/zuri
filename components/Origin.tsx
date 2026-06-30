@@ -6,19 +6,31 @@ const pillars = [
   {
     title: 'TANZANIA HIGHLANDS',
     subtitle: 'The Agricultural Source',
-    body: 'Our single-origin Arabica beans are meticulously cultivated at elevations ranging between 1,400 and 1,800 meters above sea level in the fertile highlands of Tanzania. Every single cherry is handpicked with absolute precision.',
+    points: [
+      'Single-origin Arabica beans cultivated at 1,400-1,800m elevation',
+      'Handpicked with absolute precision',
+      'Fertile volcanic highlands of Tanzania',
+    ],
     tag: '01 / THE CULTIVATION',
   },
   {
     title: 'MATATIELE',
     subtitle: 'The Ancestral Heritage',
-    body: 'The heartbeat of Zuri is deeply anchored in South African soil. Our roots trace directly back to the rugged, breathtaking landscapes of Matatiele, tucked away in the mountain shadows near the Eastern Cape border.',
+    points: [
+      'Deeply anchored in South African soil',
+      'Roots trace to Matatiele landscapes',
+      'Near Eastern Cape border mountains',
+    ],
     tag: '02 / THE LINEAGE',
   },
   {
     title: 'BLOEMFONTEIN',
     subtitle: 'The Operational Hub',
-    body: 'Every great movement needs a strategic headquarters. For Zuri, that crucible is Bloemfontein - the geographic heart of South Africa, a melting pot of academic brilliance and creative ambition.',
+    points: [
+      'Strategic headquarters in geographic heart',
+      'Melting pot of academic brilliance',
+      'Creative ambition launchpad',
+    ],
     tag: '03 / THE LAUNCHPAD',
   },
 ]
@@ -75,9 +87,14 @@ export default function Origin() {
                 <p className="text-xs sm:text-sm text-gray-400 uppercase tracking-[0.16em]">
                   {pillar.subtitle}
                 </p>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  {pillar.body}
-                </p>
+                <ul className="text-sm text-gray-300 space-y-2">
+                  {pillar.points.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-zuri-orange mt-1">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div className="mt-5 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />

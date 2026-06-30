@@ -14,7 +14,6 @@ const products = [
     image: '/beanbagimages/4A659F3F-9E19-49B8-8F5C-F40339314815.png',
     hoverImage: '/beanbagimages/E0135AA3-2EA2-4CB3-AF8B-94BB18DBFB88.png',
     description: '250g premium whole bean bag. Meticulously cultivated at 1400-1800m altitude.',
-    featured: true,
   },
   {
     id: 1,
@@ -82,53 +81,9 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        {/* Featured Product (Bean Bag) */}
-        <div className="mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            onMouseEnter={() => setHoveredId(0)}
-            onMouseLeave={() => setHoveredId(null)}
-            className="group cursor-pointer max-w-md mx-auto"
-            onClick={() => goToProduct('beans')}
-          >
-            <div className="relative overflow-hidden rounded-xl mb-4 aspect-square">
-              <Image
-                src={hoveredId === 0 && products[0].hoverImage ? products[0].hoverImage : products[0].image}
-                alt={products[0].name}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              {hoveredId === 0 && (
-                <motion.button
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    goToProduct('beans')
-                  }}
-                  className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-zuri-orange text-white px-6 py-2 rounded-lg font-bold flex items-center gap-2 hover:bg-orange-600 transition-colors"
-                >
-                  COMING SOON
-                </motion.button>
-              )}
-            </div>
-
-            <div className="space-y-2 text-center">
-              <h3 className="text-lg font-bold text-white">{products[0].name}</h3>
-              <p className="text-sm text-gray-400">{products[0].description}</p>
-              <p className="text-xl font-bold text-zuri-orange">{products[0].price}</p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Products Grid (teaser for full products page) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {products.slice(1).map((product, index) => (
+        {/* Products Grid - Responsive 3-column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
