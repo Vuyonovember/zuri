@@ -1,12 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 
 export default function WhyZuri() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
   const cards = [
     {
       id: 1,
@@ -31,12 +29,16 @@ export default function WhyZuri() {
     },
   ]
 
-  const nextCard = () => {
-    setCurrentIndex((prev) => (prev + 1) % cards.length)
-  }
+  const x = useMotionValue(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const prevCard = () => {
-    setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length)
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const threshold = 50
+    if (info.offset.x < -threshold && currentIndex < cards.length - 1) {
+      setCurrentIndex((prev) => prev + 1)
+    } else if (info.offset.x > threshold && currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1)
+    }
   }
 
   return (
@@ -61,7 +63,11 @@ export default function WhyZuri() {
           {/* Mobile/Tablet Swipeable */}
           <div className="md:hidden overflow-hidden">
             <motion.div
-              className="flex gap-6"
+              className="flex gap-6 cursor-grab active:cursor-grabbing"
+              drag="x"
+              dragConstraints={{ left: -((cards.length - 1) * 100), right: 0 }}
+              dragElastic={0.1}
+              onDragEnd={handleDragEnd}
               animate={{ x: `-${currentIndex * 100}%` }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
@@ -120,26 +126,6 @@ export default function WhyZuri() {
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* Mobile Navigation Arrows */}
-          <div className="md:hidden flex justify-center gap-4 mt-8">
-            <button
-              onClick={prevCard}
-              className="bg-zuri-orange hover:bg-orange-600 text-white p-3 rounded-full transition-all duration-300 shadow-lg"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={nextCard}
-              className="bg-zuri-orange hover:bg-orange-600 text-white p-3 rounded-full transition-all duration-300 shadow-lg"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
 
           {/* Dot Indicators (Mobile) */}

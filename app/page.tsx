@@ -7,9 +7,6 @@ import SoulContract from '@/components/SoulContract'
 import BloemHunt from '@/components/BloemHunt'
 import Gallery from '@/components/Gallery'
 import Footer from '@/components/Footer'
-import Origin from '@/components/Origin'
-import Community from '@/components/Community'
-import WholeBean from '@/components/WholeBean'
 import PricingTiers from '@/components/PricingTiers'
 import ScrollingBanner from '@/components/ScrollingBanner'
 import WhyZuri from '@/components/WhyZuri'
@@ -40,9 +37,6 @@ export default function Home() {
       <PricingTiers />
       <Gallery />
       <WhyZuri />
-      <Origin />
-      <WholeBean />
-      <Community />
       <BloemHunt />
       <Footer />
       {showSoulContract && (
