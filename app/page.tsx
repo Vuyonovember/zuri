@@ -12,6 +12,7 @@ import Community from '@/components/Community'
 import WholeBean from '@/components/WholeBean'
 import PricingTiers from '@/components/PricingTiers'
 import ScrollingBanner from '@/components/ScrollingBanner'
+import WhyZuri from '@/components/WhyZuri'
 
 export default function Home() {
   const [showSoulContract, setShowSoulContract] = useState(false)
@@ -38,6 +39,7 @@ export default function Home() {
       <ScrollingBanner />
       <PricingTiers />
       <Gallery />
+      <WhyZuri />
       <Origin />
       <WholeBean />
       <Community />
