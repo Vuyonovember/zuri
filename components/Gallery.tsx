@@ -81,8 +81,8 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        {/* Products Grid - Responsive 3-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Products Grid - Responsive 2-column to 4-column layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {products.map((product, index) => (
             <motion.div
               key={product.id}

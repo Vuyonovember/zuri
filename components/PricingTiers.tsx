@@ -7,6 +7,8 @@ import Image from 'next/image'
 export default function PricingTiers() {
   const [activeTab, setActiveTab] = useState<'individual' | 'workplace'>('individual')
   const [sliderValue, setSliderValue] = useState(0.25)
+  const [customWeight, setCustomWeight] = useState('')
+  const [rentMachine, setRentMachine] = useState(false)
 
   const individualPricing = [
     { kg: 0.25, regular: 150, subscription: 140 },
@@ -71,6 +73,23 @@ export default function PricingTiers() {
     if (sliderValue < 5) return 1
     return 0.5
   }
+
+  const handleCustomWeightChange = (value: string) => {
+    setCustomWeight(value)
+    const numValue = parseFloat(value)
+    if (!isNaN(numValue) && numValue > 0) {
+      const kgValue = value.includes('g') ? numValue / 1000 : numValue
+      setSliderValue(kgValue)
+    }
+  }
+
+  const calculateCups = (kg: number) => {
+    // Assuming ~10g per cup for espresso, ~15g for filter
+    const cupsPerKg = 67 // ~15g per cup
+    return Math.round(kg * cupsPerKg)
+  }
+
+  const displayValue = customWeight ? customWeight : formatWeight(sliderValue)
 
   return (
     <section id="pricing" className="relative py-20 md:py-32 bg-gradient-to-b from-zuri-black via-zuri-purple/10 to-zuri-black">
@@ -143,13 +162,18 @@ export default function PricingTiers() {
             <div className="p-8 md:p-12 space-y-8">
               {/* Slider */}
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center gap-4">
                   <label className="text-sm text-gray-400 uppercase tracking-wider">
                     {activeTab === 'individual' ? 'Monthly Consumption' : 'Monthly Volume'}
                   </label>
-                  <span className="text-2xl font-bold text-white">
-                    {formatWeight(sliderValue)}
-                  </span>
+                  <input
+                    type="text"
+                    value={customWeight || formatWeight(sliderValue)}
+                    onChange={(e) => handleCustomWeightChange(e.target.value)}
+                    onBlur={() => setCustomWeight('')}
+                    placeholder="e.g., 500g or 2kg"
+                    className="w-32 text-right text-2xl font-bold text-white bg-white/10 border border-white/20 rounded-lg px-3 py-2 focus:outline-none focus:border-zuri-orange"
+                  />
                 </div>
                 <input
                   type="range"
@@ -168,11 +192,19 @@ export default function PricingTiers() {
 
               {/* Pricing Display */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white/5 rounded-xl p-6 space-y-2">
-                  <p className="text-sm text-gray-400">One-Time Purchase</p>
-                  <p className="text-3xl font-bold text-white">R{currentPrice.regular}</p>
-                  <p className="text-xs text-gray-500">per month</p>
-                </div>
+                {activeTab === 'workplace' ? (
+                  <div className="bg-white/5 rounded-xl p-6 space-y-2">
+                    <p className="text-sm text-gray-400">Estimated Cups</p>
+                    <p className="text-3xl font-bold text-white">{calculateCups(sliderValue)}</p>
+                    <p className="text-xs text-gray-500">cups per month</p>
+                  </div>
+                ) : (
+                  <div className="bg-white/5 rounded-xl p-6 space-y-2">
+                    <p className="text-sm text-gray-400">One-Time Purchase</p>
+                    <p className="text-3xl font-bold text-white">R{currentPrice.regular}</p>
+                    <p className="text-xs text-gray-500">per month</p>
+                  </div>
+                )}
                 <div className="bg-zuri-orange/10 border border-zuri-orange/30 rounded-xl p-6 space-y-2 relative">
                   <p className="text-sm text-zuri-orange">Subscription Price</p>
                   <p className="text-3xl font-bold text-zuri-orange">R{currentPrice.subscription}</p>
@@ -185,9 +217,23 @@ export default function PricingTiers() {
                 </div>
               </div>
 
+              {/* Coffee Machine Rental */}
+              <div className="flex  items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="rentMachine"
+                  checked={rentMachine}
+                  onChange={(e) => setRentMachine(e.target.checked)}
+                  className="w-5 h-5 accent-zuri-orange cursor-pointer"
+                />
+                <label htmlFor="rentMachine" className="text-sm text-gray-300 cursor-pointer">
+                  I want to rent a coffee machine
+                </label>
+              </div>
+
               {/* CTA */}
               <button className="w-full bg-zuri-orange text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg">
-                START SUBSCRIPTION
+                ENQUIRE
               </button>
             </div>
           </div>
