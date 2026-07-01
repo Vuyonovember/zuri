@@ -37,9 +37,9 @@ export default function Home() {
       />
       <ScrollingBanner />
       <PricingTiers />
+      <Gallery />
       <Origin />
       <WholeBean />
-      <Gallery />
       <Community />
       <BloemHunt />
       <Footer />

@@ -62,7 +62,7 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" className="relative py-20 md:py-32 bg-gradient-to-b from-zuri-purple/70 via-zuri-black to-zuri-black">
+    <section id="gallery" className="relative py-20 md:py-32 bg-zuri-orange">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -72,11 +72,11 @@ export default function Gallery() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="text-xs tracking-[0.25em] text-zuri-orange mb-2">ARTIFACTS DROP</p>
+          <p className="text-xs tracking-[0.25em] text-black mb-2">ARTIFACTS DROP</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">COLLECTIBLE ARTIFACTS</span>
+            <span className="text-black">COLLECTIBLE ARTIFACTS</span>
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-black/80 max-w-2xl mx-auto">
             Premium whole beans and cold brew cans that feel more like limited drops than products.
           </p>
         </motion.div>
@@ -120,9 +120,9 @@ export default function Gallery() {
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                <p className="text-sm text-gray-400">{product.description}</p>
-                <p className="text-xl font-bold text-zuri-orange">{product.price}</p>
+                <h3 className="text-lg font-bold text-black">{product.name}</h3>
+                <p className="text-sm text-black/70">{product.description}</p>
+                <p className="text-xl font-bold text-black">{product.price}</p>
               </div>
             </motion.div>
           ))}
