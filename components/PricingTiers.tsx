@@ -89,8 +89,6 @@ export default function PricingTiers() {
     return Math.round(kg * cupsPerKg)
   }
 
-  const displayValue = customWeight ? customWeight : formatWeight(sliderValue)
-
   return (
     <section id="pricing" className="relative py-20 md:py-32 bg-gradient-to-b from-zuri-black via-zuri-purple/10 to-zuri-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
