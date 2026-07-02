@@ -9,6 +9,10 @@ export default function PricingTiers() {
   const [sliderValue, setSliderValue] = useState(0.25)
   const [customWeight, setCustomWeight] = useState('')
   const [rentMachine, setRentMachine] = useState(false)
+  const [showEnquiryModal, setShowEnquiryModal] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const individualPricing = [
     { kg: 0.25, regular: 150, subscription: 140 },
@@ -96,6 +100,46 @@ export default function PricingTiers() {
     // Assuming ~10g per cup for espresso, ~15g for filter
     const cupsPerKg = 67 // ~15g per cup
     return Math.round(kg * cupsPerKg)
+  }
+
+  const handleEnquireClick = () => {
+    setShowEnquiryModal(true)
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/pricing-enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          tab: activeTab,
+          weight: sliderValue,
+          rentMachine,
+          price: currentPrice.subscription,
+          cups: activeTab === 'workplace' ? calculateCups(sliderValue) : null,
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitSuccess(true)
+        setTimeout(() => {
+          setShowEnquiryModal(false)
+          setSubmitSuccess(false)
+          setFormData({ name: '', email: '', phone: '' })
+        }, 2000)
+      } else {
+        alert('Failed to submit enquiry. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting enquiry:', error)
+      alert('Failed to submit enquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -239,13 +283,137 @@ export default function PricingTiers() {
               </div>
 
               {/* CTA */}
-              <button className="w-full bg-zuri-orange text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg">
+              <button
+                onClick={handleEnquireClick}
+                className="w-full bg-zuri-orange text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg"
+              >
                 ENQUIRE
               </button>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Enquiry Modal */}
+      {showEnquiryModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowEnquiryModal(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="glass border-premium rounded-2xl p-8 max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-6">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-white mb-2">Enquire Now</h3>
+                <p className="text-gray-400 text-sm">
+                  {activeTab === 'individual' ? 'Individual' : 'Workplace'} - {formatWeight(sliderValue)}/month
+                  {activeTab === 'workplace' && ` (${calculateCups(sliderValue)} cups)`}
+                </p>
+              </div>
+
+              {submitSuccess ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-white text-lg font-semibold">Enquiry Submitted!</p>
+                  <p className="text-gray-400 text-sm mt-2">We'll be in touch soon.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm text-gray-400 mb-2">Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-400 mb-2">Email *</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-400 mb-2">Phone Number (Optional)</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                      placeholder="+27 XX XXX XXXX"
+                    />
+                  </div>
+
+                  <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                    <p className="text-xs text-gray-500 uppercase tracking-wider">Summary</p>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">Type:</span>
+                      <span className="text-white">{activeTab === 'individual' ? 'Individual' : 'Workplace'}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">Volume:</span>
+                      <span className="text-white">{formatWeight(sliderValue)}/month</span>
+                    </div>
+                    {activeTab === 'workplace' && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Cups:</span>
+                        <span className="text-white">{calculateCups(sliderValue)}/month</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-400">Machine Rental:</span>
+                      <span className="text-white">{rentMachine ? 'Yes' : 'No'}</span>
+                    </div>
+                    <div className="flex justify-between text-sm font-bold">
+                      <span className="text-zuri-orange">Price:</span>
+                      <span className="text-zuri-orange">R{currentPrice.subscription}/month</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowEnquiryModal(false)}
+                      className="flex-1 bg-white/10 text-white font-bold py-3 rounded-lg hover:bg-white/20 transition-all duration-300"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="flex-1 bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Submit'}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   )
 }
