@@ -31,7 +31,7 @@ export default function WhyZuri() {
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50
     if (info.offset.x < -threshold && currentIndex < cards.length - 1) {
       setCurrentIndex((prev) => prev + 1)
