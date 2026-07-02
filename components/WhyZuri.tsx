@@ -11,14 +11,14 @@ export default function WhyZuri() {
       title: 'Uncompromised Origin',
       header: 'Volcanic Tanzanian Mastery',
       body: 'No corporate commercial blends. Single-origin, hand-picked high-altitude Arabica beans, roasted to a precise, bold profile that hits smoothly every morning.',
-      image: '/webimages/EFB87B04-98A0-4E8A-A9DF-6128DA4F26DC.png',
+      image: '/new/ChatGPT Image Jul 2, 2026, 10_27_12 PM.png',
     },
     {
       id: 2,
       title: 'Drop. Tear. Brew.',
       header: 'Set It & Forget It',
       body: 'Choose your delivery frequency once. Fresh, perfectly valved bags land directly at your coordinates on auto-pilot. Your ritual never runs dry, no grocery store lines required.',
-      image: '/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png',
+      image: '/new/ChatGPT Image Jul 2, 2026, 10_31_27 PM.png',
     },
     {
       id: 3,
