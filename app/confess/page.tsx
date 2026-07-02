@@ -212,7 +212,7 @@ export default function ConfessPage() {
                   </div>
                   <h3 className="text-lg font-bold text-white">Your Ideas</h3>
                   <p className="text-sm text-gray-400">
-                    Ideas for the hunt, drops, or artifacts you wish existed
+                    Ideas for the hunt, drops, or products you wish existed
                   </p>
                 </motion.div>
 

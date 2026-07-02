@@ -72,9 +72,9 @@ export default function Gallery() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <p className="text-xs tracking-[0.25em] text-black mb-2">ARTIFACTS DROP</p>
+          <p className="text-xs tracking-[0.25em] text-black mb-2">SHOP DROP</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-black">COLLECTIBLE ARTIFACTS</span>
+            <span className="text-black">COLLECTIBLE SHOP</span>
           </h2>
           <p className="text-black/80 max-w-2xl mx-auto">
             Premium whole beans and cold brew cans that feel more like limited drops than products.
@@ -134,7 +134,7 @@ export default function Gallery() {
             onClick={() => router.push('/products')}
             className="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all duration-300"
           >
-            SHOP ALL ARTIFACTS
+            SHOP ALL
           </button>
         </div>
       </div>

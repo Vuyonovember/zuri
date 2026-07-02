@@ -50,7 +50,7 @@ export default function Footer() {
             <h4 className="font-bold mb-4">NAVIGATE</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="text-gray-400 hover:text-zuri-orange transition-colors">Home</a></li>
-              <li><a href="#gallery" className="text-gray-400 hover:text-zuri-orange transition-colors">Artifacts</a></li>
+              <li><a href="#gallery" className="text-gray-400 hover:text-zuri-orange transition-colors">Shop</a></li>
             </ul>
           </motion.div>
 
