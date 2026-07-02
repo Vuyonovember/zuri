@@ -72,22 +72,32 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden pb-4 space-y-3"
-          >
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="block text-sm text-gray-300 hover:text-zuri-orange transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </motion.div>
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="md:hidden pb-4 space-y-3 relative z-50"
+            >
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block text-sm text-gray-300 hover:text-zuri-orange transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </motion.div>
+          </>
         )}
       </div>
     </nav>
