@@ -81,9 +81,9 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        {/* Products Grid - Responsive 2-column to 4-column layout */}
+        {/* Products Grid - Responsive 2-column to 4-column layout, limited to 2 rows */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {products.map((product, index) => (
+          {products.slice(0, 4).map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
@@ -128,7 +128,15 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Teaser only: full ritual builder lives on /products */}
+        {/* Shop Button for more products */}
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => router.push('/products')}
+            className="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all duration-300"
+          >
+            SHOP ALL ARTIFACTS
+          </button>
+        </div>
       </div>
     </section>
   )

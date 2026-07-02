@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, PanInfo } from 'framer-motion'
+import { motion, PanInfo } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -29,7 +29,6 @@ export default function WhyZuri() {
     },
   ]
 
-  const x = useMotionValue(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -63,16 +62,16 @@ export default function WhyZuri() {
           {/* Mobile/Tablet Swipeable */}
           <div className="md:hidden overflow-hidden">
             <motion.div
-              className="flex gap-6 cursor-grab active:cursor-grabbing"
+              className="flex cursor-grab active:cursor-grabbing"
               drag="x"
-              dragConstraints={{ left: -((cards.length - 1) * 100), right: 0 }}
-              dragElastic={0.1}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
               onDragEnd={handleDragEnd}
               animate={{ x: `-${currentIndex * 100}%` }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
               {cards.map((card) => (
-                <div key={card.id} className="min-w-full">
+                <div key={card.id} className="min-w-full px-2">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}

@@ -17,7 +17,16 @@ export default function PricingTiers() {
   ]
 
   const calculateIndividualPrice = (kg: number) => {
-    if (kg <= 0.5) {
+    if (kg <= 0.25) {
+      const tier = individualPricing.find(t => t.kg === 0.25)
+      if (tier) {
+        const ratio = kg / 0.25
+        return {
+          regular: Math.round(tier.regular * ratio),
+          subscription: Math.round(tier.subscription * ratio),
+        }
+      }
+    } else if (kg <= 0.5) {
       const tier = individualPricing.find(t => t.kg === 0.5)
       if (tier) {
         const ratio = kg / 0.5
