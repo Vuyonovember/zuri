@@ -10,7 +10,7 @@ const products = [
     id: 0,
     key: 'beans',
     name: 'Tanzanian Single Origin Whole Bean',
-    price: 'R149',
+    price: 'R150',
     image: '/beanbagimages/4A659F3F-9E19-49B8-8F5C-F40339314815.png',
     hoverImage: '/beanbagimages/E0135AA3-2EA2-4CB3-AF8B-94BB18DBFB88.png',
     description: '250g premium whole bean bag. Meticulously cultivated at 1400-1800m altitude.',
@@ -114,7 +114,7 @@ export default function Gallery() {
                     }}
                     className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-zuri-orange text-white px-6 py-2 rounded-lg font-bold flex items-center gap-2 hover:bg-orange-600 transition-colors"
                   >
-                    COMING SOON
+                    VIEW PRODUCT
                   </motion.button>
                 )}
               </div>

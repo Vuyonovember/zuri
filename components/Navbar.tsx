@@ -73,24 +73,24 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <>
-            {/* Backdrop overlay */}
+            {/* Backdrop overlay - starts below navbar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed top-16 left-0 right-0 bottom-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="md:hidden pb-4 space-y-3 relative z-50"
+              className="md:hidden pb-4 space-y-3 relative z-50 bg-zuri-black/95 backdrop-blur-md border-b border-white/10"
             >
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block text-sm text-gray-300 hover:text-zuri-orange transition-colors"
+                  className="block text-sm text-gray-300 hover:text-zuri-orange transition-colors py-3 px-4"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

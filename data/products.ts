@@ -1,3 +1,9 @@
+export type ProductSize = {
+  size: string
+  price: number
+  cups: number
+}
+
 export type Product = {
   id: number
   key: string
@@ -11,6 +17,7 @@ export type Product = {
   vibe: string
   spec: string
   sensory: string
+  sizes?: ProductSize[]
 }
 
 export const products: Product[] = [
@@ -18,7 +25,7 @@ export const products: Product[] = [
     id: 0,
     key: 'beans',
     name: 'TANZANIAN SINGLE ORIGIN WHOLE BEAN',
-    price: 'R149',
+    price: 'R150',
     size: '250g bag',
     tag: 'PREMIUM · SINGLE ORIGIN',
     image: '/beanbagimages/4A659F3F-9E19-49B8-8F5C-F40339314815.png',
@@ -27,6 +34,11 @@ export const products: Product[] = [
     vibe: 'The cornerstone of the Zuri ecosystem. Pure coffee authority.',
     spec: '100% Premium Tanzanian Arabica Beans. Altitude: 1400m - 1800m above sea level. Varieties: Bourbon & Kent. Process: Fully Washed & Semi-Washed. Medium Roast.',
     sensory: 'The immediate sip opens with vibrant wild berry and crisp citrus. Delicate floral undertones soften the acidity. The finish features a heavy, velvety dark chocolate base note that lingers smoothly.',
+    sizes: [
+      { size: '250g', price: 150, cups: 17 },
+      { size: '500g', price: 250, cups: 33 },
+      { size: '1kg', price: 400, cups: 67 },
+    ],
   },
   {
     id: 1,
