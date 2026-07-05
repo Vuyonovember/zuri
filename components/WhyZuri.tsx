@@ -48,15 +48,10 @@ export default function WhyZuri() {
         {/* Cards Container */}
         <div className="relative">
           {/* Mobile/Tablet Swipeable */}
-          <div className="md:hidden overflow-hidden">
-            <motion.div
-              className="flex cursor-grab active:cursor-grabbing"
-              drag="x"
-              dragConstraints={{ left: -((cards.length - 1) * 100), right: 0 }}
-              dragElastic={0.1}
-            >
+          <div className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-4 px-2">
               {cards.map((card) => (
-                <div key={card.id} className="min-w-full px-2">
+                <div key={card.id} className="min-w-[85vw] snap-center">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -80,7 +75,7 @@ export default function WhyZuri() {
                   </motion.div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Desktop 3-Column Grid */}
