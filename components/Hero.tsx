@@ -51,7 +51,7 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
           >
             {/* Image Container */}
             <div className="relative aspect-[4/3] md:aspect-[21/9]">
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.div
                   key={currentImage}
                   initial={{ opacity: 0, scale: 1.05, x: 10 }}
