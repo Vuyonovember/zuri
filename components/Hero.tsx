@@ -13,33 +13,9 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   const [currentImage, setCurrentImage] = useState(0)
   
   const heroImages = [
-    '/heroimage/98C11013-595E-445A-A545-B9C4A0443F2B.png',
-    '/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png',
-    '/webimages/9395087C-3C66-4CAA-B96D-616FE0871D8E.png',
-    '/webimages/AEC83A2D-55DF-4FC0-BE41-2B791653F9CD.png',
-  ]
-
-  const imageMetadata = [
-    {
-      title: 'Tanzanian Highlands',
-      subtitle: 'Single-Origin Arabica',
-      description: 'Cultivated at 1,400-1,800m elevation',
-    },
-    {
-      title: 'The Zuri Movement',
-      subtitle: 'Coffee With Soul',
-      description: 'Premium Tanzanian extractions',
-    },
-    {
-      title: 'Cultural Activations',
-      subtitle: 'Unannounced Drops',
-      description: 'High-vibe focus on auto-pilot',
-    },
-    {
-      title: 'The Collective',
-      subtitle: 'Community First',
-      description: 'Not a brand. A movement.',
-    },
+    '/newheader/79F2CCC9-4077-4154-8766-B9EFC9E4727B.png',
+    '/newheader/2E48810F-4B3D-43DD-8B5B-72DD9820F845.png',
+    '/newheader/A40A1719-57AB-497B-93EE-695CB6216E62.png',
   ]
 
   const nextImage = () => {
@@ -115,27 +91,6 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
                   }`}
                 />
               ))}
-            </div>
-
-            {/* Information Pane */}
-            <div className="bg-black/80 backdrop-blur-sm p-6 md:p-8 border-t border-white/10">
-              <motion.div
-                key={currentImage}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-2"
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-white">
-                  {imageMetadata[currentImage].title}
-                </h3>
-                <p className="text-sm md:text-base text-zuri-orange uppercase tracking-wider">
-                  {imageMetadata[currentImage].subtitle}
-                </p>
-                <p className="text-sm md:text-base text-gray-300">
-                  {imageMetadata[currentImage].description}
-                </p>
-              </motion.div>
             </div>
           </div>
         </motion.div>
