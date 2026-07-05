@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface HeroProps {
@@ -18,13 +18,12 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
     '/newheader/A40A1719-57AB-497B-93EE-695CB6216E62.png',
   ]
 
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % heroImages.length)
-  }
-
-  const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)
-  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [heroImages.length])
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -51,46 +50,26 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
                }}
           >
             {/* Image Container */}
-            <div className="relative aspect-[16/9] md:aspect-[21/9]">
-              <Image
-                src={heroImages[currentImage]}
-                alt="Zuri Hero"
-                fill
-                className="object-cover transition-all duration-700 ease-in-out"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Dot Indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {heroImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImage(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentImage ? 'bg-zuri-orange w-6' : 'bg-white/50 hover:bg-white/70'
-                  }`}
-                />
-              ))}
+            <div className="relative aspect-[16/10] md:aspect-[21/10]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImage}
+                  initial={{ opacity: 0, scale: 1.05, x: 10 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, x: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={heroImages[currentImage]}
+                    alt="Zuri Hero"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>
