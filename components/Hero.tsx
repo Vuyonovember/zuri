@@ -21,7 +21,7 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length)
-    }, 4000)
+    }, 3000)
     return () => clearInterval(interval)
   }, [heroImages.length])
 
@@ -50,7 +50,7 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
                }}
           >
             {/* Image Container */}
-            <div className="relative aspect-[16/10] md:aspect-[21/10]">
+            <div className="relative aspect-[4/3] md:aspect-[21/9]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentImage}
