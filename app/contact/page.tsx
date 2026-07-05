@@ -42,7 +42,7 @@ export default function ContactPage() {
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
             Get In Touch.
-            <span className="block gradient-text">We're Listening.</span>
+            <span className="block gradient-text">We're Here To Help.</span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
             Have questions, feedback, or just want to say hello? We'd love to hear from you. Drop us a message and we'll get back to you as soon as possible.

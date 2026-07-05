@@ -37,7 +37,7 @@ export default function SoulContract({ onClose, variant = 'waitlist' }: SoulCont
           }),
         })
       } else if (variant === 'newsletter') {
-        await fetch('/api/hunt-signup', {
+        await fetch('/api/newsletter', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
