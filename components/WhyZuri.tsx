@@ -29,8 +29,6 @@ export default function WhyZuri() {
     },
   ]
 
-  const [dragX, setDragX] = useState(0)
-
   return (
     <section className="relative py-20 md:py-32 bg-gradient-to-b from-zuri-black via-zuri-purple/10 to-zuri-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
