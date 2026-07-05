@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, PanInfo } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -29,16 +29,7 @@ export default function WhyZuri() {
     },
   ]
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const threshold = 50
-    if (info.offset.x < -threshold && currentIndex < cards.length - 1) {
-      setCurrentIndex((prev) => prev + 1)
-    } else if (info.offset.x > threshold && currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1)
-    }
-  }
+  const [dragX, setDragX] = useState(0)
 
   return (
     <section className="relative py-20 md:py-32 bg-gradient-to-b from-zuri-black via-zuri-purple/10 to-zuri-black">
@@ -64,11 +55,9 @@ export default function WhyZuri() {
             <motion.div
               className="flex cursor-grab active:cursor-grabbing"
               drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              animate={{ x: `-${currentIndex * 100}%` }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              dragConstraints={{ left: -((cards.length - 1) * 100 + 50), right: 50 }}
+              dragElastic={0.05}
+              dragMomentum={false}
             >
               {cards.map((card) => (
                 <div key={card.id} className="min-w-full px-2">
@@ -124,19 +113,6 @@ export default function WhyZuri() {
                   <p className="text-sm text-gray-300 leading-relaxed">{card.body}</p>
                 </div>
               </motion.div>
-            ))}
-          </div>
-
-          {/* Dot Indicators (Mobile) */}
-          <div className="md:hidden flex justify-center gap-2 mt-4">
-            {cards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'bg-zuri-orange w-6' : 'bg-white/50 hover:bg-white/70'
-                }`}
-              />
             ))}
           </div>
         </div>
