@@ -52,9 +52,8 @@ export default function WhyZuri() {
             <motion.div
               className="flex cursor-grab active:cursor-grabbing"
               drag="x"
-              dragConstraints={{ left: -((cards.length - 1) * 100 + 50), right: 50 }}
-              dragElastic={0.05}
-              dragMomentum={false}
+              dragConstraints={{ left: -((cards.length - 1) * 100), right: 0 }}
+              dragElastic={0.1}
             >
               {cards.map((card) => (
                 <div key={card.id} className="min-w-full px-2">
