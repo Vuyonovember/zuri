@@ -21,7 +21,7 @@ export default function Hero({ onExploreHunt, onJoinSubscription }: HeroProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length)
-    }, 3000)
+    }, 5000)
     return () => clearInterval(interval)
   }, [heroImages.length])
 
