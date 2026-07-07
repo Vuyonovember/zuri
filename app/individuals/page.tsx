@@ -7,35 +7,127 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export default function IndividualsPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [subscriptionType, setSubscriptionType] = useState('250g')
-  const [grindType, setGrindType] = useState('whole-bean')
-  const [submitted, setSubmitted] = useState(false)
+  const [sliderValue, setSliderValue] = useState(0.25)
+  const [customWeight, setCustomWeight] = useState('')
+  const [showEnquiryModal, setShowEnquiryModal] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    try {
-      await fetch('/api/individual-subscription', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          subscriptionType,
-          grindType,
-        }),
-      })
-      setSubmitted(true)
-    } catch (error) {
-      console.error('Error:', error)
+  const individualPricing = [
+    { kg: 0.25, regular: 150, subscription: 140 },
+    { kg: 0.5, regular: 250, subscription: 235 },
+    { kg: 1, regular: 400, subscription: 380 },
+  ]
+
+  const calculateIndividualPrice = (kg: number) => {
+    if (kg <= 0.25) {
+      const tier = individualPricing.find(t => t.kg === 0.25)
+      if (tier) {
+        const ratio = kg / 0.25
+        return {
+          regular: Math.round(tier.regular * ratio),
+          subscription: Math.round(tier.subscription * ratio),
+        }
+      }
+    } else if (kg <= 0.5) {
+      const tier = individualPricing.find(t => t.kg === 0.5)
+      if (tier) {
+        const ratio = kg / 0.5
+        return {
+          regular: Math.round(tier.regular * ratio),
+          subscription: Math.round(tier.subscription * ratio),
+        }
+      }
+    } else if (kg <= 1) {
+      const tier = individualPricing.find(t => t.kg === 1)
+      if (tier) {
+        const ratio = kg / 1
+        return {
+          regular: Math.round(tier.regular * ratio),
+          subscription: Math.round(tier.subscription * ratio),
+        }
+      }
+    } else {
+      const tier = individualPricing.find(t => t.kg === 1)
+      if (tier) {
+        const ratio = kg / 1
+        return {
+          regular: Math.round(tier.regular * ratio),
+          subscription: Math.round(tier.subscription * ratio),
+        }
+      }
+    }
+    return { regular: 0, subscription: 0 }
+  }
+
+  const currentPrice = calculateIndividualPrice(sliderValue)
+  const savings = currentPrice.regular - currentPrice.subscription
+
+  const formatWeight = (kg: number) => {
+    if (kg < 1) {
+      return `${Math.round(kg * 1000)}g`
+    }
+    return kg % 1 === 0 ? `${kg}kg` : `${kg.toFixed(1)}kg`
+  }
+
+  const getSliderStep = () => {
+    if (sliderValue < 1) return 0.25
+    if (sliderValue < 5) return 1
+    return 0.5
+  }
+
+  const handleCustomWeightChange = (value: string) => {
+    setCustomWeight(value)
+    const numValue = parseFloat(value)
+    if (!isNaN(numValue) && numValue > 0) {
+      const kgValue = value.includes('g') ? numValue / 1000 : numValue
+      setSliderValue(kgValue)
     }
   }
 
-  const cupsPerMonth = subscriptionType === '250g' ? 30 : 60
-  const pricePerCup = subscriptionType === '250g' ? 140 / 30 : 235 / 60
+  const calculateCups = (kg: number) => {
+    const cupsPerKg = 67
+    return Math.round(kg * cupsPerKg)
+  }
+
+  const handleEnquireClick = () => {
+    setShowEnquiryModal(true)
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/individual-subscription', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          weight: sliderValue,
+          price: currentPrice.subscription,
+          cups: calculateCups(sliderValue),
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitSuccess(true)
+        setTimeout(() => {
+          setShowEnquiryModal(false)
+          setSubmitSuccess(false)
+          setFormData({ name: '', email: '', phone: '' })
+        }, 2000)
+      } else {
+        alert('Failed to submit enquiry. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting enquiry:', error)
+      alert('Failed to submit enquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <main className="min-h-screen bg-zuri-black">
@@ -277,179 +369,206 @@ export default function IndividualsPage() {
           </div>
         </motion.div>
 
-        {/* Subscription Form */}
+        {/* Subscription Calculator */}
         <motion.div
           id="subscription-form"
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-6"
+          className="max-w-4xl mx-auto"
         >
-          {!submitted ? (
-            <>
-              <div className="text-center space-y-4">
-                <p className="text-xs tracking-[0.25em] text-zuri-orange">START YOUR SUBSCRIPTION</p>
-                <h2 className="text-2xl sm:text-3xl font-semibold">JOIN THE TRIBE</h2>
-                <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
-                  Choose your stack and we'll deliver elite Tanzanian coffee to your door.
-                </p>
-              </div>
-              <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-300">
-                    Choose Your Subscription
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { value: '250g', label: 'Ritual Starter (250g) - R140/mo' },
-                      { value: '500g', label: 'Half-Kilo Stack (500g) - R235/mo' },
-                    ].map((option) => (
-                      <button
-                        key={option.value}
-                        type="button"
-                        onClick={() => setSubscriptionType(option.value)}
-                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                          subscriptionType === option.value
-                            ? 'bg-zuri-orange text-white glow-orange-sm'
-                            : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="bg-white/5 rounded-lg p-3 mt-2">
-                    <p className="text-sm text-gray-400">
-                      Estimated cups per month: <span className="text-zuri-orange font-bold">{cupsPerMonth}</span>
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      Cost per cup: <span className="text-zuri-orange font-bold">R{pricePerCup.toFixed(2)}</span>
-                    </p>
-                  </div>
-                </div>
+          <div className="glass border-premium rounded-2xl overflow-hidden">
+            {/* Image */}
+            <div className="relative aspect-[21/9] md:aspect-[3/1]">
+              <Image
+                src="/webimages/EFB87B04-98A0-4E8A-A9DF-6128DA4F26DC.png"
+                alt="Individual Coffee"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+            </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-300">
-                    Grind Type
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { value: 'whole-bean', label: 'Whole Bean' },
-                      { value: 'french-press', label: 'French Press' },
-                      { value: 'drip-filter', label: 'Drip Filter' },
-                      { value: 'espresso', label: 'Espresso' },
-                    ].map((option) => (
-                      <button
-                        key={option.value}
-                        type="button"
-                        onClick={() => setGrindType(option.value)}
-                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                          grindType === option.value
-                            ? 'bg-zuri-orange text-white glow-orange-sm'
-                            : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-300">
-                    Your Name
+            {/* Calculator Content */}
+            <div className="p-8 md:p-12 space-y-8">
+              {/* Slider */}
+              <div className="space-y-4">
+                <div className="flex justify-between items-center gap-4">
+                  <label className="text-sm text-gray-400 uppercase tracking-wider">
+                    Monthly Consumption
                   </label>
                   <input
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="John Doe"
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
+                    value={customWeight || formatWeight(sliderValue)}
+                    onChange={(e) => handleCustomWeightChange(e.target.value)}
+                    onBlur={() => setCustomWeight('')}
+                    placeholder="e.g., 500g or 2kg"
+                    className="w-32 text-right text-2xl font-bold text-white bg-white/10 border border-white/20 rounded-lg px-3 py-2 focus:outline-none focus:border-zuri-orange"
                   />
                 </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-300">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="john@example.com"
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-300">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+27 82 553 8183"
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-zuri-orange transition-colors"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
-                >
-                  START SUBSCRIPTION
-                </button>
-              </form>
-
-              <div className="pt-6 border-t border-white/10 space-y-4">
-                <p className="text-sm text-gray-400 text-center">Or contact us directly:</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a
-                    href="mailto:hello@bezuri.co.za"
-                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-                  >
-                    hello@bezuri.co.za
-                  </a>
-                  <a
-                    href="tel:+27825538183"
-                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-                  >
-                    +27(82)-553-8183
-                  </a>
+                <input
+                  type="range"
+                  min={0.25}
+                  max={5}
+                  step={getSliderStep()}
+                  value={sliderValue}
+                  onChange={(e) => setSliderValue(parseFloat(e.target.value))}
+                  className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-zuri-orange"
+                />
+                <div className="flex justify-between text-xs text-gray-500">
+                  <span>250g</span>
+                  <span>5kg+</span>
                 </div>
               </div>
-            </>
-          ) : (
-            <div className="text-center space-y-4">
-              <div className="text-5xl">✨</div>
-              <h3 className="text-2xl font-bold">Request Received!</h3>
-              <p className="text-gray-400">
-                We'll review your subscription request and get back to you within 24-48 hours to set up your delivery.
-              </p>
-              <div className="pt-6 border-t border-white/10 space-y-4">
-                <p className="text-sm text-gray-400 text-center">Need to reach us sooner?</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <a
-                    href="mailto:hello@bezuri.co.za"
-                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-                  >
-                    hello@bezuri.co.za
-                  </a>
-                  <a
-                    href="tel:+27825538183"
-                    className="inline-flex items-center justify-center px-8 py-3 border border-zuri-orange text-zuri-orange font-bold rounded-lg hover:bg-zuri-orange/10 transition-all duration-300"
-                  >
-                    +27(82)-553-8183
-                  </a>
+
+              {/* Pricing Display */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white/5 rounded-xl p-6 space-y-2">
+                  <p className="text-sm text-gray-400">Estimated Cups</p>
+                  <p className="text-3xl font-bold text-white">{calculateCups(sliderValue)}</p>
+                  <p className="text-xs text-gray-500">cups per month</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-6 space-y-2">
+                  <p className="text-sm text-gray-400">One-Time Purchase</p>
+                  <p className="text-3xl font-bold text-white">R{currentPrice.regular}</p>
+                  <p className="text-xs text-gray-500">per month</p>
+                </div>
+                <div className="bg-zuri-orange/10 border border-zuri-orange/30 rounded-xl p-6 space-y-2 relative md:col-span-2">
+                  <p className="text-sm text-zuri-orange">Subscription Price</p>
+                  <p className="text-3xl font-bold text-zuri-orange">R{currentPrice.subscription}</p>
+                  <p className="text-xs text-gray-400">per month</p>
+                  {savings > 0 && (
+                    <div className="absolute -top-3 -right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      SAVE R{savings}
+                    </div>
+                  )}
                 </div>
               </div>
+
+              {/* CTA */}
+              <button
+                onClick={handleEnquireClick}
+                className="w-full bg-zuri-orange text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg"
+              >
+                ENQUIRE
+              </button>
             </div>
-          )}
+          </div>
         </motion.div>
+
+        {/* Enquiry Modal */}
+        {showEnquiryModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowEnquiryModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="glass border-premium rounded-2xl p-8 max-w-md w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-2">Enquire Now</h3>
+                  <p className="text-gray-400 text-sm">
+                    Individual - {formatWeight(sliderValue)}/month ({calculateCups(sliderValue)} cups)
+                  </p>
+                </div>
+
+                {submitSuccess ? (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <p className="text-white text-lg font-semibold">Enquiry Submitted!</p>
+                    <p className="text-gray-400 text-sm mt-2">We'll be in touch soon.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm text-gray-400 mb-2">Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                        placeholder="Your name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-gray-400 mb-2">Email *</label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-gray-400 mb-2">Phone Number (Optional)</label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-zuri-orange"
+                        placeholder="+27 XX XXX XXXX"
+                      />
+                    </div>
+
+                    <div className="bg-white/5 rounded-lg p-4 space-y-2">
+                      <p className="text-xs text-gray-500 uppercase tracking-wider">Summary</p>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Type:</span>
+                        <span className="text-white">Individual</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Volume:</span>
+                        <span className="text-white">{formatWeight(sliderValue)}/month</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Cups:</span>
+                        <span className="text-white">{calculateCups(sliderValue)}/month</span>
+                      </div>
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-zuri-orange">Price:</span>
+                        <span className="text-zuri-orange">R{currentPrice.subscription}/month</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setShowEnquiryModal(false)}
+                        className="flex-1 bg-white/10 text-white font-bold py-3 rounded-lg hover:bg-white/20 transition-all duration-300"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="flex-1 bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? 'Sending...' : 'Submit'}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </section>
 
       <Footer />

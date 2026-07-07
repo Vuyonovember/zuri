@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, phone, subscriptionType, grindType } = body
+    const { name, email, phone, weight, price, cups } = body
 
     // Only initialize Resend if API key is available
     if (!process.env.RESEND_API_KEY) {
@@ -30,8 +30,9 @@ export async function POST(request: Request) {
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-            <p><strong>Subscription Type:</strong> ${subscriptionType === '250g' ? 'Ritual Starter (250g) - R140/mo' : 'Half-Kilo Stack (500g) - R235/mo'}</p>
-            <p><strong>Grind Type:</strong> ${grindType}</p>
+            <p><strong>Monthly Volume:</strong> ${weight < 1 ? `${Math.round(weight * 1000)}g` : `${weight}kg`}</p>
+            <p><strong>Estimated Cups:</strong> ${cups}</p>
+            <p><strong>Subscription Price:</strong> R${price}/month</p>
           </div>
           <p style="color: #666; font-size: 12px;">This subscription request was submitted on the Zuri website.</p>
         </div>
@@ -48,8 +49,9 @@ export async function POST(request: Request) {
           <h2 style="color: #DE2C00;">Welcome to the Tribe, ${name}!</h2>
           <p>Thank you for your subscription request. We've received the following details:</p>
           <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Subscription Type:</strong> ${subscriptionType === '250g' ? 'Ritual Starter (250g) - R140/mo' : 'Half-Kilo Stack (500g) - R235/mo'}</p>
-            <p><strong>Grind Type:</strong> ${grindType}</p>
+            <p><strong>Monthly Volume:</strong> ${weight < 1 ? `${Math.round(weight * 1000)}g` : `${weight}kg`}</p>
+            <p><strong>Estimated Cups:</strong> ${cups}</p>
+            <p><strong>Subscription Price:</strong> R${price}/month</p>
           </div>
           <p>Our team will contact you within 24-48 hours to finalize your subscription and arrange your first delivery.</p>
           <p style="color: #666; font-size: 12px;">This is an automated message from Zuri.</p>
