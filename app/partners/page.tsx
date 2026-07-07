@@ -16,6 +16,7 @@ export default function PartnersPage() {
   const [includeMachine, setIncludeMachine] = useState(false)
   const [comments, setComments] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [industry, setIndustry] = useState('office')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,6 +33,7 @@ export default function PartnersPage() {
           daysPerWeek,
           includeMachine,
           comments,
+          industry,
         }),
       })
       setSubmitted(true)
@@ -48,18 +50,28 @@ export default function PartnersPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center space-y-4"
+          className="text-center space-y-6"
         >
           <p className="text-xs tracking-[0.25em] text-zuri-orange">
             PARTNER WITH US
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            Build With The
-            <span className="block gradient-text">Zuri Movement.</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+            UPGRADE YOUR
+            <span className="block gradient-text">WORKPLACE.</span>
           </h1>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+            ELEVATE YOUR
+            <span className="block gradient-text">CLIENT EXPERIENCE.</span>
+          </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
-            We're not just selling coffee - we're building a premium ecosystem. Partner with us to bring authentic African coffee culture to your space.
+            Bring volcanic, single-origin Tanzanian mastery directly into your office breakroom, showroom, or event space. Unbeatable wholesale margins, automated logistics, and zero corporate friction.
           </p>
+          <button
+            onClick={() => document.getElementById('partnership-form')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-8 py-4 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg"
+          >
+            CLAIM MY FREE 250g OFFICE TASTING BATCH
+          </button>
         </motion.div>
 
         {/* Hero Image */}
@@ -78,89 +90,123 @@ export default function PartnersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
 
-        {/* Shop-in-Shop */}
+        {/* Solutions Matrix */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4"
+          className="space-y-8"
         >
-          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
-          <h2 className="text-xl sm:text-2xl font-semibold">Shop-in-Shop Partnerships</h2>
-          <p className="text-sm sm:text-base text-gray-300">
-            Transform your space into a premium coffee destination. We partner with restaurants, cafes, tattoo shops, barbers, fuel stations, and any business that wants to elevate their customer experience with authentic Tanzanian single-origin coffee. It doesn't matter what industry you're in - if you have people, we have the coffee.
-          </p>
-          <p className="text-sm sm:text-base text-gray-300">
-            We supply premium whole beans and can install our own branded coffee machines in your location. We work out a custom deal that makes sense for your business model and customer base.
-          </p>
+          <div className="text-center">
+            <p className="text-xs tracking-[0.25em] text-zuri-orange mb-2">THE SOLUTIONS MATRIX</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+              <span className="gradient-text">INDUSTRY DOESN'T MATTER</span>
+            </h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass border-premium rounded-2xl p-6 space-y-4"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold text-white">Corporate Office Subscriptions</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Keep your team operating at 10/10. Automated, fresh monthly drops of whole bean or custom filter-ground coffee tailored perfectly to your staff volume.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass border-premium rounded-2xl p-6 space-y-4"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold text-white">Boutique Retail & Hospitality</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Elevate customer retention. Perfect for law firms, high-end hair salons, luxury clinics, and guesthouses who refuse to serve low-grade commercial instant brands to their clients.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="glass border-premium rounded-2xl p-6 space-y-4"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <h3 className="text-xl font-bold text-white">High-Volume Events & Catering</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Partner with the Tribe for high-visibility deployments. Custom setups, co-branded marketing assets, and a massive secondary subscription revenue stream for event coordinators.
+              </p>
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Office Solutions */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4"
-        >
-          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
-          <h2 className="text-xl sm:text-2xl font-semibold">Office Coffee Solutions</h2>
-          <p className="text-sm sm:text-base text-gray-300">
-            Fuel your team with premium coffee. We install our machines in your office space and offer flexible rental options. You subscribe to receive fresh beans delivered monthly based on your team's consumption needs.
-          </p>
-          <p className="text-sm sm:text-base text-gray-300">
-            Before we set up, we conduct a thorough survey of your needs: number of employees, daily coffee consumption, peak brewing times, and flavor preferences. This ensures we provide the right equipment and bean supply for your specific office culture.
-          </p>
-        </motion.div>
-
-        {/* Partnership Types */}
+        {/* Tribe Perks - Electric Orange Section */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="space-y-6"
+          className="relative bg-zuri-orange rounded-2xl p-8 sm:p-12 overflow-hidden"
         >
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <div>
-              <p className="text-xs tracking-[0.25em] text-zuri-orange">WHO WE PARTNER WITH</p>
-              <h2 className="text-2xl sm:text-3xl font-semibold mt-1">Your Business Type Doesn't Matter</h2>
-            </div>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">🍽️ Restaurants & Cafes</h3>
-              <p>Elevate your menu with premium single-origin coffee. We supply beans and equipment to complement your existing offerings.</p>
+          <div className="absolute inset-0 bg-gradient-to-br from-zuri-orange via-orange-600 to-orange-700 opacity-90" />
+          <div className="relative z-10">
+            <div className="text-center mb-8">
+              <p className="text-xs tracking-[0.25em] text-white/80 mb-2">THE TRIBE PERKS</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                EXTRAORDINARY TEAM VALUE
+              </h2>
             </div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">💈 Barbers & Tattoo Shops</h3>
-              <p>Create a premium waiting experience. Your clients appreciate quality - give them coffee that matches your craft.</p>
-            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">20% OFF // THE KICKSTART</h3>
+                <p className="text-sm text-white/90">
+                  Every staff member receives an automatic <strong>20% discount on their first 3 months</strong> of any individual Zuri home subscription.
+                </p>
+              </div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">🌿 Dispensaries & Lifestyle Shops</h3>
-              <p>Perfect pairing for elevated retail experiences. Our bold, premium coffee complements your curated product selection.</p>
-            </div>
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">10% LIFETIME // THE SUBSCRIPTION LOCK</h3>
+                <p className="text-sm text-white/90">
+                  Staff members lock in an <strong>additional 10% lifetime discount</strong> on personal home coffee subscriptions for as long as your company remains a Zuri partner.
+                </p>
+              </div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">⛽ Fuel Stations & Convenience</h3>
-              <p>Stand out from the competition. Offer travelers and locals a coffee experience worth stopping for.</p>
-            </div>
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">10% OFF // MERCHANDISE & DROPS</h3>
+                <p className="text-sm text-white/90">
+                  Immediate <strong>10% discount on all individual Zuri product orders</strong> and limited-edition merchandise or apparel drops.
+                </p>
+              </div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">🏢 Business Offices</h3>
-              <p>Machine rental + monthly bean subscription. We survey your team's needs and keep your break room stocked with premium fuel.</p>
-            </div>
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">CUSTOM UNO // BREAKROOM CULTURE CRATES</h3>
+                <p className="text-sm text-white/90">
+                  High-volume tiers receive custom, limited-edition <strong>matte-black Zuri UNO card games</strong> featuring our signature high-contrast electric-orange design.
+                </p>
+              </div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
-              <h3 className="text-lg font-semibold">🎨 Creative Spaces & Co-working</h3>
-              <p>Fuel the creators. Perfect for studios, agencies, and collaborative workspaces where coffee is part of the culture.</p>
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">TRIBE GIVEAWAYS // AUTOMATIC ENTRY</h3>
+                <p className="text-sm text-white/90">
+                  Active corporate monthly subscriptions automatically whitelist your entire staff directory into our quarterly partner draws for premium collaborative gear.
+                </p>
+              </div>
+
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">FUTURE LOCAL PERKS // EXPANDING NETWORK</h3>
+                <p className="text-sm text-white/90">
+                  We are actively curating an elite network of local Bloemfontein partnerships. Your custom digital Zuri employee profile will unlock exclusive perks across premium local lifestyle spaces.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -181,20 +227,141 @@ export default function PartnersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
 
-        {/* Partnership Form */}
+        {/* Testimonials */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.3 }}
+          className="space-y-8"
+        >
+          <div className="text-center">
+            <p className="text-xs tracking-[0.25em] text-zuri-orange mb-2">⭐️ WHAT THE TRIBE IS SAYING</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+              <span className="gradient-text">PARTNER STORIES</span>
+            </h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass border-premium rounded-2xl p-6 space-y-4"
+            >
+              <p className="text-lg font-bold text-white">"Our corporate clients refuse to drink anything else."</p>
+              <p className="text-sm text-gray-300 leading-relaxed italic">
+                "We swapped out our traditional corporate coffee service for the Zuri 1KG Wholesale Stack. Our clients comment on the volcanic Tanzanian roast in every single boardroom meeting, and the team productivity speaks for itself."
+              </p>
+              <p className="text-sm text-zuri-orange font-semibold">— Managing Director, Premium Law Firm, Brandwag</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass border-premium rounded-2xl p-6 space-y-4"
+            >
+              <p className="text-lg font-bold text-white">"The ultimate weekend event asset."</p>
+              <p className="text-sm text-gray-300 leading-relaxed italic">
+                "Integrating Zuri's premium coffee profiles into our catering fleet completely transformed our beverage options. Low friction, elite packaging, absolute mastery."
+              </p>
+              <p className="text-sm text-zuri-orange font-semibold">— Lead Event Curator, Boutique Catering Co.</p>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.35 }}
+          className="space-y-8"
+        >
+          <div className="text-center">
+            <p className="text-xs tracking-[0.25em] text-zuri-orange mb-2">❓ THE NO-NONSENSE B2B FAQ</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+              <span className="gradient-text">GOT QUESTIONS?</span>
+            </h2>
+          </div>
+
+          <div className="space-y-6 max-w-4xl mx-auto">
+            <div className="glass border-premium rounded-2xl p-6 space-y-3">
+              <h3 className="text-lg font-bold text-white">What equipment do we need to use Zuri?</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Absolute freedom. You do not need to buy an expensive, complex industrial machine. When you claim your free trial or lock in a monthly stack, you tell us exactly what your office uses—whether it's a standard breakroom French press (plunger), a drip filter machine, an espresso setup, or a bean-to-cup machine. We calibrate the grind profile specifically to your equipment before hand-delivering it.
+              </p>
+            </div>
+
+            <div className="glass border-premium rounded-2xl p-6 space-y-3">
+              <h3 className="text-lg font-bold text-white">How do we know how many kilograms our office actually needs?</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                We've made it completely foolproof with our interactive slider below. As a quick baseline rule of thumb: a standard 250g bag brews roughly 25 to 30 cups of coffee. If you have a small office of 5 to 8 daily coffee consumers, the <strong>1KG Monthly Tier</strong> is your perfect sweet spot. For larger corporate hubs, law firms, or showrooms, our <strong>Wholesale Tier</strong> ensures you never run dry.
+              </p>
+            </div>
+
+            <div className="glass border-premium rounded-2xl p-6 space-y-3">
+              <h3 className="text-lg font-bold text-white">Is the 250g tasting trial really 100% free?</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Yes, entirely. There are no hidden setup costs, no credit card entries required upfront, and absolutely zero high-pressure sales calls. We drop off a fresh 250g batch ground to match your office gear, let your team experience the difference for a week, and follow up cleanly to see if you want to automate the upgrade. If it's not for you, the trial costs you R0.00.
+              </p>
+            </div>
+
+            <div className="glass border-premium rounded-2xl p-6 space-y-3">
+              <h3 className="text-lg font-bold text-white">How does delivery work in Bloemfontein?</h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                Because we are focused on dominating our home turf first, <strong>all corporate and wholesale deliveries across Bloemfontein are completely free</strong>, managed directly by our team, and scheduled precisely so your breakroom is restocked before your current supply runs out.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Partnership Form */}
+        <motion.div
+          id="partnership-form"
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.4 }}
           className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-6"
         >
           {!submitted ? (
             <>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-center">Ready to Partner?</h2>
-              <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto text-center">
-                Tell us about your office needs and we'll create a custom coffee solution for you.
-              </p>
+              <div className="text-center space-y-4">
+                <p className="text-xs tracking-[0.25em] text-zuri-orange">THE INTERACTIVE CALCULATOR & ORDER ENGINE</p>
+                <h2 className="text-2xl sm:text-3xl font-semibold">CHOOSE YOUR STACK</h2>
+                <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
+                  Tell us about your office needs and we'll create a custom coffee solution for you.
+                </p>
+              </div>
               <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+                <div className="space-y-2">
+                  <label className="text-sm text-gray-300">
+                    Choose Your Industry
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { value: 'office', label: 'Office / Corporate' },
+                      { value: 'hospitality', label: 'Guesthouse / Hospitality' },
+                      { value: 'events', label: 'Event Catering / Wedding' },
+                      { value: 'retail', label: 'Retail / Barber / Salon' },
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setIndustry(option.value)}
+                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                          industry === option.value
+                            ? 'bg-zuri-orange text-white glow-orange-sm'
+                            : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-sm text-gray-300">
                     Your Name
@@ -350,7 +517,7 @@ export default function PartnersPage() {
                   type="submit"
                   className="w-full bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
                 >
-                  SUBMIT PARTNERSHIP REQUEST
+                  CLAIM MY FREE 250g TASTING BATCH
                 </button>
               </form>
 

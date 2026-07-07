@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { name, email, phone, employees, cupsPerDay, daysPerWeek, includeMachine, comments } = body
+    const { name, email, phone, employees, cupsPerDay, daysPerWeek, includeMachine, comments, industry } = body
 
     // Only initialize Resend if API key is available
     if (!process.env.RESEND_API_KEY) {
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Industry:</strong> ${industry || 'Not specified'}</p>
             <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
             <p><strong>Number of Employees:</strong> ${employees}</p>
             <p><strong>Cups per Day (per employee):</strong> ${cupsPerDay}</p>
