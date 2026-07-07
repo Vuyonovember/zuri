@@ -53,7 +53,7 @@ export default function PartnersPage() {
           className="text-center space-y-6"
         >
           <p className="text-xs tracking-[0.25em] text-zuri-orange">
-            PARTNER WITH US
+            FOR WORKPLACES
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
             UPGRADE YOUR

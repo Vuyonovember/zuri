@@ -20,7 +20,8 @@ export default function Navbar() {
 
   const navItems = [
     { label: 'OUR DIRTY SECRETS', href: '/about' },
-    { label: 'PARTNER WITH US', href: '/partners' },
+    { label: 'FOR WORKPLACES', href: '/partners' },
+    { label: 'FOR INDIVIDUALS', href: '/individuals' },
     { label: 'SHOP', href: '/products' },
     { label: 'CONFESS TO US', href: '/confess' },
   ]
