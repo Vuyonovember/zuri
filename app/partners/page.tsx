@@ -66,12 +66,6 @@ export default function PartnersPage() {
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
             Bring volcanic, single-origin Tanzanian mastery directly into your office breakroom, showroom, or event space. Unbeatable wholesale margins, automated logistics, and zero corporate friction.
           </p>
-          <button
-            onClick={() => document.getElementById('partnership-form')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange text-lg"
-          >
-            CLAIM MY FREE 250g OFFICE TASTING BATCH
-          </button>
         </motion.div>
 
         {/* Hero Image */}
@@ -253,7 +247,7 @@ export default function PartnersPage() {
               <p className="text-sm text-gray-300 leading-relaxed italic">
                 "We swapped out our traditional corporate coffee service for the Zuri 1KG Wholesale Stack. Our clients comment on the volcanic Tanzanian roast in every single boardroom meeting, and the team productivity speaks for itself."
               </p>
-              <p className="text-sm text-zuri-orange font-semibold">— Managing Director, Premium Law Firm, Brandwag</p>
+              <p className="text-sm text-zuri-orange font-semibold">Managing Director, Premium Law Firm, Brandwag</p>
             </motion.div>
 
             <motion.div
@@ -267,7 +261,7 @@ export default function PartnersPage() {
               <p className="text-sm text-gray-300 leading-relaxed italic">
                 "Integrating Zuri's premium coffee profiles into our catering fleet completely transformed our beverage options. Low friction, elite packaging, absolute mastery."
               </p>
-              <p className="text-sm text-zuri-orange font-semibold">— Lead Event Curator, Boutique Catering Co.</p>
+              <p className="text-sm text-zuri-orange font-semibold">Lead Event Curator, Boutique Catering Co.</p>
             </motion.div>
           </div>
         </motion.div>
@@ -517,7 +511,7 @@ export default function PartnersPage() {
                   type="submit"
                   className="w-full bg-zuri-orange text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
                 >
-                  CLAIM MY FREE 250g TASTING BATCH
+                  SUBMIT ENQUIRY
                 </button>
               </form>
 
