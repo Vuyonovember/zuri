@@ -56,14 +56,11 @@ export default function PartnersPage() {
             FOR WORKPLACES
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-            FUEL YOUR TEAM'S PRODUCTIVITY AND ELEVATE CLIENT EXPERIENCE
-            <span className="block gradient-text">WITHIN 48 HOURS</span>
+            FUEL YOUR TEAM'S PRODUCTIVITY
+            <span className="block gradient-text">ELEVATE CLIENT EXPERIENCE</span>
           </h1>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
-            WITH THE ZURI CORPORATE COFFEE STACK
-          </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
-            Premium, barista-grade office coffee subscriptions <strong className="text-zuri-orange">without</strong> complex contracts, machine maintenance headaches, or stale supermarket beans.
+            Premium, barista-grade office coffee subscriptions <strong className="text-zuri-orange">without</strong> complex contracts or stale supermarket beans.
           </p>
         </motion.div>
 
@@ -283,7 +280,7 @@ export default function PartnersPage() {
             <div className="glass border-premium rounded-2xl p-6 space-y-3">
               <h3 className="text-lg font-bold text-white">What equipment do we need to use Zuri?</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Absolute freedom. You do not need to buy an expensive, complex industrial machine. When you claim your free trial or lock in a monthly stack, you tell us exactly what your office uses—whether it's a standard breakroom French press (plunger), a drip filter machine, an espresso setup, or a bean-to-cup machine. We calibrate the grind profile specifically to your equipment before hand-delivering it.
+                Use whatever coffee setup you already have—French press, drip filter, espresso, or bean-to-cup. Our whole bean coffee works with all standard equipment.
               </p>
             </div>
 
@@ -295,9 +292,9 @@ export default function PartnersPage() {
             </div>
 
             <div className="glass border-premium rounded-2xl p-6 space-y-3">
-              <h3 className="text-lg font-bold text-white">Is the 250g tasting trial really 100% free?</h3>
+              <h3 className="text-lg font-bold text-white">How do we get started?</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Yes, entirely. There are no hidden setup costs, no credit card entries required upfront, and absolutely zero high-pressure sales calls. We drop off a fresh 250g batch ground to match your office gear, let your team experience the difference for a week, and follow up cleanly to see if you want to automate the upgrade. If it's not for you, the trial costs you R0.00.
+                Simply submit an enquiry with your office details. We'll calculate your monthly volume needs and provide a custom quote. No setup costs, no contracts, no pressure.
               </p>
             </div>
 
@@ -334,27 +331,22 @@ export default function PartnersPage() {
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { value: 'office', label: 'Office / Corporate', popular: true },
-                      { value: 'hospitality', label: 'Guesthouse / Hospitality', popular: false },
-                      { value: 'events', label: 'Event Catering / Wedding', popular: false },
-                      { value: 'retail', label: 'Retail / Barber / Salon', popular: false },
+                      { value: 'office', label: 'Office / Corporate' },
+                      { value: 'hospitality', label: 'Guesthouse / Hospitality' },
+                      { value: 'events', label: 'Event Catering / Wedding' },
+                      { value: 'retail', label: 'Retail / Barber / Salon' },
                     ].map((option) => (
                       <button
                         key={option.value}
                         type="button"
                         onClick={() => setIndustry(option.value)}
-                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 relative ${
+                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                           industry === option.value
                             ? 'bg-zuri-orange text-white glow-orange-sm'
                             : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
                         }`}
                       >
                         {option.label}
-                        {option.popular && (
-                          <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                            POPULAR
-                          </span>
-                        )}
                       </button>
                     ))}
                   </div>
@@ -517,9 +509,6 @@ export default function PartnersPage() {
                 >
                   SUBMIT ENQUIRY
                 </button>
-                <p className="text-xs text-gray-400 text-center">
-                  Includes <strong className="text-zuri-orange">free professional machine calibration</strong> + <strong className="text-zuri-orange">first month's premium branded merchandise</strong>
-                </p>
               </form>
 
               <div className="pt-6 border-t border-white/10 space-y-4">
