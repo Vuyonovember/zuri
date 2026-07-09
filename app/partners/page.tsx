@@ -278,13 +278,6 @@ export default function PartnersPage() {
 
           <div className="space-y-6 max-w-4xl mx-auto">
             <div className="glass border-premium rounded-2xl p-6 space-y-3">
-              <h3 className="text-lg font-bold text-white">What equipment do we need to use Zuri?</h3>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                Use whatever coffee setup you already have—French press, drip filter, espresso, or bean-to-cup. Our whole bean coffee works with all standard equipment.
-              </p>
-            </div>
-
-            <div className="glass border-premium rounded-2xl p-6 space-y-3">
               <h3 className="text-lg font-bold text-white">How do we know how many kilograms our office actually needs?</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 We've made it completely foolproof with our interactive slider below. As a quick baseline rule of thumb: a standard 250g bag brews roughly 25 to 30 cups of coffee. If you have a small office of 5 to 8 daily coffee consumers, the <strong>1KG Monthly Tier</strong> is your perfect sweet spot. For larger corporate hubs, law firms, or showrooms, our <strong>Wholesale Tier</strong> ensures you never run dry.
