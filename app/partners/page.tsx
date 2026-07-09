@@ -171,30 +171,30 @@ export default function PartnersPage() {
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">10% OFF // MERCHANDISE</h3>
+                <h3 className="text-lg font-bold text-white">UNO CARDS // CULTURE</h3>
                 <p className="text-sm text-white/90">
-                  <strong>10% off all Zuri products</strong> and limited-edition merchandise drops.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">CUSTOM UNO // CULTURE CRATES</h3>
-                <p className="text-sm text-white/90">
-                  High-volume tiers receive <strong>limited-edition Zuri UNO card games</strong> for breakroom culture.
+                  Random partners receive <strong>Zuri UNO card games</strong> for breakroom culture.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
                 <h3 className="text-lg font-bold text-white">TRIBE GIVEAWAYS</h3>
                 <p className="text-sm text-white/90">
-                  <strong>Automatic entry</strong> into quarterly partner draws for premium collaborative gear.
+                  <strong>Quarterly draws</strong> for premium collaborative gear and experiences.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">FUTURE LOCAL PERKS</h3>
+                <h3 className="text-lg font-bold text-white">PRIORITY SUPPORT</h3>
                 <p className="text-sm text-white/90">
-                  <strong>Exclusive perks</strong> across premium local lifestyle spaces in Bloemfontein.
+                  <strong>Dedicated support</strong> for all corporate partners with fast response times.
+                </p>
+              </div>
+
+              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
+                <h3 className="text-lg font-bold text-white">FREE DELIVERY</h3>
+                <p className="text-sm text-white/90">
+                  <strong>Complimentary delivery</strong> across Bloemfontein for all corporate orders.
                 </p>
               </div>
             </div>
