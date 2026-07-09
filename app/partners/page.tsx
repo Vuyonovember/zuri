@@ -56,15 +56,14 @@ export default function PartnersPage() {
             FOR WORKPLACES
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-            UPGRADE YOUR
-            <span className="block gradient-text">WORKPLACE.</span>
+            FUEL YOUR TEAM'S PRODUCTIVITY AND ELEVATE CLIENT EXPERIENCE
+            <span className="block gradient-text">WITHIN 48 HOURS</span>
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-            ELEVATE YOUR
-            <span className="block gradient-text">CLIENT EXPERIENCE.</span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+            WITH THE ZURI CORPORATE COFFEE STACK
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
-            Bring volcanic, single-origin Tanzanian mastery directly into your office breakroom, showroom, or event space. Unbeatable wholesale margins, automated logistics, and zero corporate friction.
+            Premium, barista-grade office coffee subscriptions <strong className="text-zuri-orange">without</strong> complex contracts, machine maintenance headaches, or stale supermarket beans.
           </p>
         </motion.div>
 
@@ -163,42 +162,42 @@ export default function PartnersPage() {
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
                 <h3 className="text-lg font-bold text-white">20% OFF // THE KICKSTART</h3>
                 <p className="text-sm text-white/90">
-                  Every staff member receives an automatic <strong>20% discount on their first 3 months</strong> of any individual Zuri home subscription.
+                  Staff get <strong>20% off first 3 months</strong> of individual home subscriptions.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">10% LIFETIME // THE SUBSCRIPTION LOCK</h3>
+                <h3 className="text-lg font-bold text-white">10% LIFETIME // LOCK IN</h3>
                 <p className="text-sm text-white/90">
-                  Staff members lock in an <strong>additional 10% lifetime discount</strong> on personal home coffee subscriptions for as long as your company remains a Zuri partner.
+                  <strong>10% lifetime discount</strong> on personal subscriptions while your company partners with Zuri.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">10% OFF // MERCHANDISE & DROPS</h3>
+                <h3 className="text-lg font-bold text-white">10% OFF // MERCHANDISE</h3>
                 <p className="text-sm text-white/90">
-                  Immediate <strong>10% discount on all individual Zuri product orders</strong> and limited-edition merchandise or apparel drops.
+                  <strong>10% off all Zuri products</strong> and limited-edition merchandise drops.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">CUSTOM UNO // BREAKROOM CULTURE CRATES</h3>
+                <h3 className="text-lg font-bold text-white">CUSTOM UNO // CULTURE CRATES</h3>
                 <p className="text-sm text-white/90">
-                  High-volume tiers receive custom, limited-edition <strong>matte-black Zuri UNO card games</strong> featuring our signature high-contrast electric-orange design.
+                  High-volume tiers receive <strong>limited-edition Zuri UNO card games</strong> for breakroom culture.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">TRIBE GIVEAWAYS // AUTOMATIC ENTRY</h3>
+                <h3 className="text-lg font-bold text-white">TRIBE GIVEAWAYS</h3>
                 <p className="text-sm text-white/90">
-                  Active corporate monthly subscriptions automatically whitelist your entire staff directory into our quarterly partner draws for premium collaborative gear.
+                  <strong>Automatic entry</strong> into quarterly partner draws for premium collaborative gear.
                 </p>
               </div>
 
               <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">FUTURE LOCAL PERKS // EXPANDING NETWORK</h3>
+                <h3 className="text-lg font-bold text-white">FUTURE LOCAL PERKS</h3>
                 <p className="text-sm text-white/90">
-                  We are actively curating an elite network of local Bloemfontein partnerships. Your custom digital Zuri employee profile will unlock exclusive perks across premium local lifestyle spaces.
+                  <strong>Exclusive perks</strong> across premium local lifestyle spaces in Bloemfontein.
                 </p>
               </div>
             </div>
@@ -335,22 +334,27 @@ export default function PartnersPage() {
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { value: 'office', label: 'Office / Corporate' },
-                      { value: 'hospitality', label: 'Guesthouse / Hospitality' },
-                      { value: 'events', label: 'Event Catering / Wedding' },
-                      { value: 'retail', label: 'Retail / Barber / Salon' },
+                      { value: 'office', label: 'Office / Corporate', popular: true },
+                      { value: 'hospitality', label: 'Guesthouse / Hospitality', popular: false },
+                      { value: 'events', label: 'Event Catering / Wedding', popular: false },
+                      { value: 'retail', label: 'Retail / Barber / Salon', popular: false },
                     ].map((option) => (
                       <button
                         key={option.value}
                         type="button"
                         onClick={() => setIndustry(option.value)}
-                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 relative ${
                           industry === option.value
                             ? 'bg-zuri-orange text-white glow-orange-sm'
                             : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
                         }`}
                       >
                         {option.label}
+                        {option.popular && (
+                          <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                            POPULAR
+                          </span>
+                        )}
                       </button>
                     ))}
                   </div>
@@ -513,6 +517,9 @@ export default function PartnersPage() {
                 >
                   SUBMIT ENQUIRY
                 </button>
+                <p className="text-xs text-gray-400 text-center">
+                  Includes <strong className="text-zuri-orange">free professional machine calibration</strong> + <strong className="text-zuri-orange">first month's premium branded merchandise</strong>
+                </p>
               </form>
 
               <div className="pt-6 border-t border-white/10 space-y-4">
