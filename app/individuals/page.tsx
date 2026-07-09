@@ -173,9 +173,10 @@ export default function IndividualsPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4"
+          whileHover={{ scale: 1.01 }}
+          className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
         >
-          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
           <h2 className="text-xl sm:text-2xl font-semibold">The Ritual Overhaul</h2>
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
             Zuri is 100% Volcanic Arabica (Bourbon & Kent varieties), meticulously hand-harvested at 1,400m–1,800m in the Tanzanian Highlands. It is roasted with mathematical precision to preserve its smooth, naturally rich profile, and delivered to you on autopilot.
@@ -202,9 +203,10 @@ export default function IndividualsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-xl font-bold text-white">The Ritual Starter (250g)</h3>
               <p className="text-3xl font-bold text-zuri-orange">R140 / month</p>
               <p className="text-sm text-gray-300">
@@ -225,9 +227,10 @@ export default function IndividualsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-xl font-bold text-white">The Half-Kilo Stack (500g)</h3>
               <p className="text-3xl font-bold text-zuri-orange">R235 / month</p>
               <p className="text-sm text-gray-300">
@@ -250,7 +253,8 @@ export default function IndividualsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="glass border-premium rounded-2xl p-6 sm:p-8"
+            whileHover={{ scale: 1.01 }}
+            className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 sm:p-8 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
           >
             <h3 className="text-xl font-bold text-white mb-4">The Per-Cup Reality Check</h3>
             <p className="text-sm text-gray-300 leading-relaxed mb-4">
@@ -286,26 +290,24 @@ export default function IndividualsPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">Workplace/Event Voucher</h3>
-                <p className="text-sm text-white/90">
-                  If your company is a Zuri partner, get <strong>20% off your first 3 months</strong> and <strong>10% lifetime discount</strong> while employed there.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">Merchandise Loop</h3>
-                <p className="text-sm text-white/90">
-                  Automatic <strong>10% off all Zuri individual orders</strong> and high-end merchandise/apparel drops.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">VIP Pipeline</h3>
-                <p className="text-sm text-white/90">
-                  Early-access whitelisting for upcoming product launches, including <strong>Zuri canned beverage drops</strong> before public shelves.
-                </p>
-              </div>
+              {[
+                { title: 'Workplace/Event Voucher', body: 'If your company is a Zuri partner, get 20% off your first 3 months and 10% lifetime discount while employed there.' },
+                { title: 'Merchandise Loop', body: 'Automatic 10% off all Zuri individual orders and high-end merchandise/apparel drops.' },
+                { title: 'VIP Pipeline', body: 'Early-access whitelisting for upcoming product launches, including Zuri canned beverage drops before public shelves.' },
+              ].map((perk, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2 border border-zuri-orange/20 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+                >
+                  <h3 className="text-lg font-bold text-white">{perk.title}</h3>
+                  <p className="text-sm text-white/90">{perk.body}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -330,12 +332,13 @@ export default function IndividualsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-lg font-bold text-white">No Fancy Gear Needed</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                We custom-grind beans to match whatever you use at home—French press, drip filter, espresso maker, or moka pot. Or order whole beans if you have a grinder.
+                Our whole bean coffee works with whatever you use at home—French press, drip filter, espresso maker, or moka pot.
               </p>
             </motion.div>
 
@@ -344,9 +347,10 @@ export default function IndividualsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-lg font-bold text-white">100% Control</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 Securely tokenized recurring payments. No rigid contracts. Pause, adjust bag sizes, skip a month, or cancel with a single tap in your dashboard.
@@ -358,9 +362,10 @@ export default function IndividualsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-lg font-bold text-white">Free Local Drop</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 Freshly roasted and hand-delivered directly to your doorstep or office desk in Bloemfontein completely free of charge.
