@@ -94,18 +94,55 @@ export default function PartnersPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          {/* Mobile Swipeable */}
+          <div className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+            <div className="flex gap-4 px-2">
+              {[
+                {
+                  title: 'Corporate Office Subscriptions',
+                  body: 'Keep your team operating at 10/10. Automated, fresh monthly drops of whole bean coffee tailored perfectly to your staff volume.',
+                },
+                {
+                  title: 'Boutique Retail & Hospitality',
+                  body: 'Elevate customer retention. Perfect for law firms, high-end hair salons, luxury clinics, and guesthouses who refuse to serve low-grade commercial brands to their clients.',
+                },
+                {
+                  title: 'High-Volume Events & Catering',
+                  body: 'Partner with the Tribe for high-visibility deployments. Custom setups, co-branded marketing assets, and a massive secondary subscription revenue stream for event coordinators.',
+                },
+              ].map((card, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="min-w-[85vw] snap-center"
+                >
+                  <div className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300">
+                    <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
+                    <h3 className="text-xl font-bold text-white">{card.title}</h3>
+                    <p className="text-sm text-gray-300 leading-relaxed">{card.body}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid gap-6 md:grid-cols-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-xl font-bold text-white">Corporate Office Subscriptions</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Keep your team operating at 10/10. Automated, fresh monthly drops of whole bean or custom filter-ground coffee tailored perfectly to your staff volume.
+                Keep your team operating at 10/10. Automated, fresh monthly drops of whole bean coffee tailored perfectly to your staff volume.
               </p>
             </motion.div>
 
@@ -114,12 +151,13 @@ export default function PartnersPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-xl font-bold text-white">Boutique Retail & Hospitality</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Elevate customer retention. Perfect for law firms, high-end hair salons, luxury clinics, and guesthouses who refuse to serve low-grade commercial instant brands to their clients.
+                Elevate customer retention. Perfect for law firms, high-end hair salons, luxury clinics, and guesthouses who refuse to serve low-grade commercial brands to their clients.
               </p>
             </motion.div>
 
@@ -128,9 +166,10 @@ export default function PartnersPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="glass border-premium rounded-2xl p-6 space-y-4"
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
               <h3 className="text-xl font-bold text-white">High-Volume Events & Catering</h3>
               <p className="text-sm text-gray-300 leading-relaxed">
                 Partner with the Tribe for high-visibility deployments. Custom setups, co-branded marketing assets, and a massive secondary subscription revenue stream for event coordinators.
@@ -155,48 +194,57 @@ export default function PartnersPage() {
               </h2>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">20% OFF // THE KICKSTART</h3>
-                <p className="text-sm text-white/90">
-                  Staff get <strong>20% off first 3 months</strong> of individual home subscriptions.
-                </p>
+            {/* Mobile Swipeable */}
+            <div className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+              <div className="flex gap-4 px-2">
+                {[
+                  { title: '20% OFF // THE KICKSTART', body: 'Staff get 20% off first 3 months of individual home subscriptions.' },
+                  { title: '10% LIFETIME // LOCK IN', body: '10% lifetime discount on personal subscriptions while your company partners with Zuri.' },
+                  { title: 'UNO CARDS // CULTURE', body: 'Random partners receive Zuri UNO card games for breakroom culture.' },
+                  { title: 'TRIBE GIVEAWAYS', body: 'Quarterly draws for premium collaborative gear and experiences.' },
+                  { title: 'PRIORITY SUPPORT', body: 'Dedicated support for all corporate partners with fast response times.' },
+                  { title: 'FREE DELIVERY', body: 'Complimentary delivery across Bloemfontein for all corporate orders.' },
+                ].map((perk, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="min-w-[85vw] snap-center"
+                  >
+                    <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2 border border-zuri-orange/20 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300">
+                      <h3 className="text-lg font-bold text-white">{perk.title}</h3>
+                      <p className="text-sm text-white/90">{perk.body}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
+            </div>
 
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">10% LIFETIME // LOCK IN</h3>
-                <p className="text-sm text-white/90">
-                  <strong>10% lifetime discount</strong> on personal subscriptions while your company partners with Zuri.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">UNO CARDS // CULTURE</h3>
-                <p className="text-sm text-white/90">
-                  Random partners receive <strong>Zuri UNO card games</strong> for breakroom culture.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">TRIBE GIVEAWAYS</h3>
-                <p className="text-sm text-white/90">
-                  <strong>Quarterly draws</strong> for premium collaborative gear and experiences.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">PRIORITY SUPPORT</h3>
-                <p className="text-sm text-white/90">
-                  <strong>Dedicated support</strong> for all corporate partners with fast response times.
-                </p>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2">
-                <h3 className="text-lg font-bold text-white">FREE DELIVERY</h3>
-                <p className="text-sm text-white/90">
-                  <strong>Complimentary delivery</strong> across Bloemfontein for all corporate orders.
-                </p>
-              </div>
+            {/* Desktop Grid */}
+            <div className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: '20% OFF // THE KICKSTART', body: 'Staff get 20% off first 3 months of individual home subscriptions.' },
+                { title: '10% LIFETIME // LOCK IN', body: '10% lifetime discount on personal subscriptions while your company partners with Zuri.' },
+                { title: 'UNO CARDS // CULTURE', body: 'Random partners receive Zuri UNO card games for breakroom culture.' },
+                { title: 'TRIBE GIVEAWAYS', body: 'Quarterly draws for premium collaborative gear and experiences.' },
+                { title: 'PRIORITY SUPPORT', body: 'Dedicated support for all corporate partners with fast response times.' },
+                { title: 'FREE DELIVERY', body: 'Complimentary delivery across Bloemfontein for all corporate orders.' },
+              ].map((perk, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="bg-black/20 backdrop-blur-sm rounded-xl p-5 space-y-2 border border-zuri-orange/20 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+                >
+                  <h3 className="text-lg font-bold text-white">{perk.title}</h3>
+                  <p className="text-sm text-white/90">{perk.body}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -317,7 +365,7 @@ export default function PartnersPage() {
                   Tell us about your office needs and we'll create a custom coffee solution for you.
                 </p>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+              <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto px-4 sm:px-0">
                 <div className="space-y-2">
                   <label className="text-sm text-gray-300">
                     Choose Your Industry
@@ -333,7 +381,7 @@ export default function PartnersPage() {
                         key={option.value}
                         type="button"
                         onClick={() => setIndustry(option.value)}
-                        className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                        className={`px-3 sm:px-4 py-3 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
                           industry === option.value
                             ? 'bg-zuri-orange text-white glow-orange-sm'
                             : 'bg-white/5 border border-white/10 text-gray-300 hover:border-zuri-orange/50'
