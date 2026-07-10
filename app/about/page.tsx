@@ -29,21 +29,6 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
-        {/* Hero Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.05 }}
-          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
-        >
-          <Image
-            src="/webimages/B69DC046-40D7-4402-B3AE-50A0977AED35.png"
-            alt="Founders story"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        </motion.div>
 
         {/* Founders' Story */}
         <motion.div
@@ -154,6 +139,22 @@ export default function AboutPage() {
               To expand the Zuri ecosystem from a premium whole bean single-origin standard into a complete lifestyle movement spanning high-end merchandise, social retail experiences, ready-to-drink functional beverages, and decentralized creative hubs across the continent.
             </p>
           </div>
+        </motion.div>
+
+        {/* Hero Image - Moved to bottom with team image */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
+          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[21/10]"
+        >
+          <Image
+            src="/team/EBFD727F-2783-4566-8E16-E9D4F72EDA6C.png"
+            alt="Founders story"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
       </section>
 

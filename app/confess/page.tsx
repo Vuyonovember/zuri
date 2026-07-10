@@ -15,7 +15,7 @@ export default function ConfessPage() {
   const handleClose = () => setOpenContract(false)
 
   const brandImages = [
-    '/team/EBFD727F-2783-4566-8E16-E9D4F72EDA6C.png',
+    '/webimages/EFB87B04-98A0-4E8A-A9DF-6128DA4F26DC.png',
     '/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png',
     '/webimages/C5E6FC04-9576-4B76-8975-1322CD6E54C3.png',
   ]
@@ -61,7 +61,86 @@ export default function ConfessPage() {
 
       <section className="relative w-full pt-24 pb-20 md:pt-32 md:pb-32 bg-gradient-to-b from-zuri-black via-zuri-purple/10 to-zuri-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Text column */}
+          {/* Wide Interactive Image Slider Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-[90vw] md:max-w-[1200px] mx-auto"
+          >
+            <div
+              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
+              style={{
+                boxShadow: '0 10px 30px -10px rgba(255, 85, 0, 0.15), 0 1px 3px rgba(255, 85, 0, 0.1)',
+              }}
+            >
+              {/* Image Container */}
+              <div className="relative aspect-[16/9] md:aspect-[21/9]">
+                <Image
+                  src={brandImages[currentImage]}
+                  alt="Zuri Brand"
+                  fill
+                  className="object-cover transition-all duration-700 ease-in-out"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {brandImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentImage ? 'bg-zuri-orange w-6' : 'bg-white/50 hover:bg-white/70'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Information Pane */}
+              <div className="bg-black/80 backdrop-blur-sm p-6 md:p-8 border-t border-white/10">
+                <motion.div
+                  key={currentImage}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-2"
+                >
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    {brandMetadata[currentImage].title}
+                  </h3>
+                  <p className="text-sm md:text-base text-zuri-orange uppercase tracking-wider">
+                    {brandMetadata[currentImage].subtitle}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-300">
+                    {brandMetadata[currentImage].description}
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Text column - below card */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -177,85 +256,6 @@ export default function ConfessPage() {
                   No support tickets. No bots. Just the humans behind Zuri reading what you send.
                   The sharpest confessions get early access, roadmap influence, and invites to future Zuri-Cons.
                 </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Wide Interactive Image Slider Card - Moved to bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="max-w-[90vw] md:max-w-[1200px] mx-auto mt-16 md:mt-24"
-          >
-            <div
-              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10"
-              style={{
-                boxShadow: '0 10px 30px -10px rgba(255, 85, 0, 0.15), 0 1px 3px rgba(255, 85, 0, 0.1)',
-              }}
-            >
-              {/* Image Container */}
-              <div className="relative aspect-[16/10] md:aspect-[21/10]">
-                <Image
-                  src={brandImages[currentImage]}
-                  alt="Zuri Brand"
-                  fill
-                  className="object-cover transition-all duration-700 ease-in-out"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              </div>
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              {/* Dot Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {brandImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImage(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentImage ? 'bg-zuri-orange w-6' : 'bg-white/50 hover:bg-white/70'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Information Pane */}
-              <div className="bg-black/80 backdrop-blur-sm p-6 md:p-8 border-t border-white/10">
-                <motion.div
-                  key={currentImage}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-2"
-                >
-                  <h3 className="text-xl md:text-2xl font-bold text-white">
-                    {brandMetadata[currentImage].title}
-                  </h3>
-                  <p className="text-sm md:text-base text-zuri-orange uppercase tracking-wider">
-                    {brandMetadata[currentImage].subtitle}
-                  </p>
-                  <p className="text-sm md:text-base text-gray-300">
-                    {brandMetadata[currentImage].description}
-                  </p>
-                </motion.div>
               </div>
             </div>
           </motion.div>
