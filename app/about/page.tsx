@@ -29,15 +29,31 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
+        {/* Hero Image - Team image at top */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.05 }}
+          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[21/10]"
+        >
+          <Image
+            src="/team/EBFD727F-2783-4566-8E16-E9D4F72EDA6C.png"
+            alt="Founders story"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </motion.div>
 
         {/* Founders' Story */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4"
+          whileHover={{ scale: 1.01 }}
+          className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
         >
-          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+          <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
           <h2 className="text-xl sm:text-2xl font-semibold">The Founders' Journey</h2>
           <p className="text-sm sm:text-base text-gray-300">
             In 2026, Varsity College graduates Vuyo November and Mariska Jacobs looked at the local South African coffee market and saw a glaring void. The industry was saturated with the same recycled concepts - either overly stuffy commercial chains or elitist boutiques that lacked real flavor, culture, and energy.
@@ -65,37 +81,65 @@ export default function AboutPage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-3" />
               <h3 className="text-lg font-semibold">🎨 Bold Expression Over Clean Minimalism</h3>
               <p>
                 We don't hide behind blank spaces. Our visual DNA is wrapped in rich, hand-painted traditional geometric patterns, warm neon glares, deep wooden textures, and rich color palettes. We believe that premium quality doesn't have to feel cold and detached. True luxury is full of life, texture, and authentic human joy.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-3" />
               <h3 className="text-lg font-semibold">🤝 Radical Human Connection</h3>
               <p>
                 Coffee is the original social network. It shouldn't be consumed in a rushed, isolated bubble. Zuri is built specifically to act as the ultimate social glue. Whether it's through our high-vibe physical Coffee Parties or our collaborative digital spaces, our goal is to bring incredible people together to spark bigger ideas.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-3" />
               <h3 className="text-lg font-semibold">🌍 Uncompromising Origin Respect</h3>
               <p>
                 We respect the roots. Our single-origin beans aren't just commodities; they are heritage. We source directly from the high-altitude volcanic soils of Tanzania to ensure every single sip carries a heavy, unmistakable structural flavor profile that honors East African agricultural excellence.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="glass border-premium rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300">
-              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-3" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 space-y-3 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+            >
+              <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-3" />
               <h3 className="text-lg font-semibold">⚡ High-Energy Creativity</h3>
               <p>
                 We are the official fuel source for local craftsmanship. We design our ecosystems, our packaging, and our spaces to specifically inspire creators, tech developers, fashion designers, and corporate rebels. If you are pushing boundaries, you belong here.
               </p>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -104,7 +148,8 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
+          whileHover={{ scale: 1.01 }}
+          className="relative rounded-2xl overflow-hidden border border-zuri-orange/30 aspect-[16/9] sm:aspect-[21/9] hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
         >
           <Image
             src="/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png"
@@ -122,39 +167,37 @@ export default function AboutPage() {
           transition={{ duration: 0.9, delay: 0.25 }}
           className="grid gap-8 md:grid-cols-2 items-stretch"
         >
-          <div className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-gray-300">
-            <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+          >
+            <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
             <p className="text-xs tracking-[0.25em] text-zuri-orange">OUR MISSION</p>
             <h2 className="text-2xl font-semibold">What We're Here To Do</h2>
             <p>
               To eradicate uncalibrated, soul-less coffee routines by delivering a high-energy, premium product wrapped in authentic African design culture that actively connects, inspires, and fuels global creative movements.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="glass border-premium rounded-2xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-gray-300">
-            <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-fuchsia-500 to-cyan-400 mb-4" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-gradient-to-br from-zuri-orange/20 via-orange-600/10 to-orange-700/20 border border-zuri-orange/30 rounded-2xl p-6 sm:p-8 space-y-4 text-sm sm:text-base text-gray-300 hover:border-zuri-orange hover:glow-orange-sm transition-all duration-300 cursor-pointer"
+          >
+            <div className="w-14 h-1 rounded-full bg-gradient-to-r from-zuri-orange via-orange-500 to-orange-400 mb-4" />
             <p className="text-xs tracking-[0.25em] text-zuri-orange">OUR VISION</p>
             <h2 className="text-2xl font-semibold">Where We're Going</h2>
             <p>
               To expand the Zuri ecosystem from a premium whole bean single-origin standard into a complete lifestyle movement spanning high-end merchandise, social retail experiences, ready-to-drink functional beverages, and decentralized creative hubs across the continent.
             </p>
-          </div>
-        </motion.div>
-
-        {/* Hero Image - Moved to bottom with team image */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3 }}
-          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[21/10]"
-        >
-          <Image
-            src="/team/EBFD727F-2783-4566-8E16-E9D4F72EDA6C.png"
-            alt="Founders story"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          </motion.div>
         </motion.div>
       </section>
 
