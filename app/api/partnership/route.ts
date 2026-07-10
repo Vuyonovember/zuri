@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     // Send notification to Zuri team
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: ['mariska@bezuri.co.za', 'hello@bezuri.co.za'],
       subject: 'New Partnership Request',
       html: `
@@ -40,6 +40,20 @@ export async function POST(request: Request) {
             ${comments ? `<p><strong>Additional Comments:</strong></p><p style="white-space: pre-wrap;">${comments}</p>` : ''}
           </div>
           <p style="color: #666; font-size: 12px;">This partnership request was submitted on the Zuri website.</p>
+        </div>
+      `,
+    })
+
+    // Send confirmation email to user
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
+      to: email,
+      subject: 'Your Zuri Partnership Request',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #DE2C00;">Thank you for your interest, ${name}!</h2>
+          <p>We've received your partnership request. Our team will review your details and contact you within 24-48 hours to discuss next steps.</p>
+          <p style="color: #666; font-size: 12px;">This is a no-reply email. For questions, contact us at hello@bezuri.co.za</p>
         </div>
       `,
     })

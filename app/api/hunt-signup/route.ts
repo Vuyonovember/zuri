@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     // Send notification to Zuri team
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: ['mariska@bezuri.co.za', 'hello@bezuri.co.za'],
       subject: `New Hunt Sign-up: ${email}`,
       html: `
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     // Send confirmation email to the user
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: [email],
       subject: 'Welcome to the Zuri Hunt! 🎯',
       html: `
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
           <div style="margin: 30px 0; padding: 20px; background: #2D0A31; border-radius: 8px;">
             <p style="color: white; margin: 0;">Wake Up. Be Bold. Be Zuri.</p>
           </div>
-          <p style="color: #666; font-size: 12px;">You're receiving this email because you signed up for the Zuri Hunt.</p>
+          <p style="color: #666; font-size: 12px;">This is a no-reply email. For questions, contact us at hello@bezuri.co.za</p>
         </div>
       `,
     })

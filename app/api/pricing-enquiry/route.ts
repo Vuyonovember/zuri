@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY)
 
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: ['mariska@bezuri.co.za', 'hello@bezuri.co.za'],
       subject: `New Pricing Enquiry: ${tab === 'individual' ? 'Individual' : 'Workplace'}`,
       html: `
@@ -43,6 +43,20 @@ export async function POST(request: Request) {
             <p><strong>Monthly Price:</strong> R${price}</p>
           </div>
           <p style="color: #666; font-size: 12px;">This pricing enquiry was submitted on the Zuri website.</p>
+        </div>
+      `,
+    })
+
+    // Send confirmation email to user
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
+      to: email,
+      subject: 'Your Zuri Pricing Enquiry',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #DE2C00;">Thank you for your enquiry, ${name}!</h2>
+          <p>We've received your pricing enquiry for ${tab === 'individual' ? 'individual' : 'workplace'} subscription. Our team will contact you within 24-48 hours to discuss your requirements.</p>
+          <p style="color: #666; font-size: 12px;">This is a no-reply email. For questions, contact us at hello@bezuri.co.za</p>
         </div>
       `,
     })

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     // Send notification to Zuri team
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: ['mariska@bezuri.co.za', 'hello@bezuri.co.za'],
       subject: 'New Individual Subscription Request',
       html: `
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'hello@bezuri.co.za',
+      from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
       to: email,
       subject: 'Your Zuri Subscription Request',
       html: `
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
             <p><strong>Subscription Price:</strong> R${price}/month</p>
           </div>
           <p>Our team will contact you within 24-48 hours to finalize your subscription and arrange your first delivery.</p>
-          <p style="color: #666; font-size: 12px;">This is an automated message from Zuri.</p>
+          <p style="color: #666; font-size: 12px;">This is a no-reply email. For questions, contact us at hello@bezuri.co.za</p>
         </div>
       `,
     })
