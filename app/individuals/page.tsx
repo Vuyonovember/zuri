@@ -157,10 +157,10 @@ export default function IndividualsPage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.05 }}
-          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/9] sm:aspect-[21/9]"
+          className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[21/10]"
         >
           <Image
-            src="/partnerpage/42EF1BCE-938B-4454-94C3-EB46E6E4559A.png"
+            src="/individual/A13EF858-5F38-4E3F-841C-29F239353B27.png"
             alt="Zuri Coffee"
             fill
             className="object-cover"

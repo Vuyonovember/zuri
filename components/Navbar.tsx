@@ -50,7 +50,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden lg:flex gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -65,7 +65,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white"
+            className="lg:hidden text-white"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -79,13 +79,13 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed top-16 left-0 right-0 bottom-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed top-16 left-0 right-0 bottom-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="md:hidden pb-4 space-y-3 relative z-50 bg-zuri-black/95 backdrop-blur-md border-b border-white/10"
+              className="lg:hidden pb-4 space-y-3 relative z-50 bg-zuri-black/95 backdrop-blur-md border-b border-white/10"
             >
               {navItems.map((item) => (
                 <a
