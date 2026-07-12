@@ -15,9 +15,9 @@ export default function ConfessPage() {
   const handleClose = () => setOpenContract(false)
 
   const brandImages = [
+    '/contactpg/ChatGPT Image Jul 11, 2026, 09_25_45 PM.png',
     '/webimages/EFB87B04-98A0-4E8A-A9DF-6128DA4F26DC.png',
     '/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png',
-    '/contactpg/ChatGPT Image Jul 11, 2026, 09_25_45 PM.png',
   ]
 
   const brandMetadata = [
