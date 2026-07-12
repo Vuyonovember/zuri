@@ -17,7 +17,7 @@ export default function ConfessPage() {
   const brandImages = [
     '/webimages/EFB87B04-98A0-4E8A-A9DF-6128DA4F26DC.png',
     '/webimages/3BE02BC8-9DCF-4B48-9D13-880A3D2AF411.png',
-    '/webimages/C5E6FC04-9576-4B76-8975-1322CD6E54C3.png',
+    '/contactpg/ChatGPT Image Jul 11, 2026, 09_25_45 PM.png',
   ]
 
   const brandMetadata = [
