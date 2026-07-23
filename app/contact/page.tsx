@@ -79,10 +79,10 @@ export default function ContactPage() {
               For general inquiries, partnership opportunities, or just to say hello, drop us an email.
             </p>
             <a
-              href="mailto:mariska@bezuri.co.za"
+              href="mailto:mariska@bezuri.shop"
               className="inline-flex items-center justify-center px-6 py-3 bg-zuri-orange text-white font-bold rounded-lg hover:bg-orange-600 transition-all duration-300 glow-orange-sm hover:glow-orange"
             >
-              mariska@bezuri.co.za
+              mariska@bezuri.shop
             </a>
           </div>
 

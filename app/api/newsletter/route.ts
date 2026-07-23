@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     // Send notification to Zuri team
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'hello@social.bezuri.co.za',
-      to: ['mariska@bezuri.co.za', 'hello@bezuri.co.za'],
+      to: ['mariska@bezuri.shop', 'hello@bezuri.co.za'],
       subject: `New Newsletter Subscription: ${email}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
